@@ -3,10 +3,10 @@
 #include <QObject>
 #include <QTcpServer>
 #include <QTcpSocket>
-
 #include <QtNetwork>
 #include <QByteArray>
 #include <QDebug>
+#include <QMap>
 
 class MyTcpServer : public QObject
 {
@@ -17,12 +17,13 @@ public:
 public slots:
     void slotNewConnection();
     void slotClientDisconnected();
-
     void slotServerRead();
+
 private:
-    QTcpServer * mTcpServer;
-    QTcpSocket * mTcpSocket;
-    //int server_status;
+    QTcpServer* mTcpServer;
+    QTcpSocket* mTcpSocket;
+    int server_status;
+    QMap<int, QTcpSocket*> active_clients;
 };
 #endif // MYTCPSERVER_H
 
