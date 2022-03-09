@@ -5,9 +5,9 @@
 MyTcpServer::~MyTcpServer()
 {
     mTcpServer->close();
-    qDebug() << "Server shut";
     server_status = 0;
 }
+
 MyTcpServer::MyTcpServer(QObject *parent) : QObject(parent){
     mTcpServer = new QTcpServer(this);
     connect(mTcpServer, &QTcpServer::newConnection,
@@ -23,46 +23,45 @@ MyTcpServer::MyTcpServer(QObject *parent) : QObject(parent){
 }
 
 void MyTcpServer::slotNewConnection(){
-    if(server_status == 1){
+    if(server_status == 1)
+    {
         mTcpSocket = mTcpServer -> nextPendingConnection();
         int userid_soc = mTcpSocket -> socketDescriptor();
-        active_clients[userid_soc] = mTcpSocket;
-        qDebug() << "New connection -" << userid_soc << "\n";
-        connect(active_clients[userid_soc], SIGNAL(readyRead()),
+        active_clients[mTcpSocket] = userid_soc;
+        qDebug() << "New connection -" << userid_soc;
+        connect(active_clients.key(userid_soc), SIGNAL(readyRead()),
                 this, SLOT(slotServerRead()));
-        connect(active_clients[userid_soc], SIGNAL(disconnected()),
+        connect(active_clients.key(userid_soc), SIGNAL(disconnected()),
                 this, SLOT(slotClientDisconnected()));
-        foreach(int i, active_clients.keys())
+        foreach(QTcpSocket* i, active_clients.keys())
         {
-            qDebug() << active_clients[i]
-                        << active_clients[i]->socketDescriptor();
+            qDebug() << i
+                        << active_clients[i];
         }
-        }
+    }
 }
 
 void MyTcpServer::slotServerRead(){
     QByteArray array;
     QTcpSocket* clientSocket = (QTcpSocket*)sender();
-    int clientSocket_id = clientSocket->socketDescriptor();
     QString res = "";
     while(clientSocket->bytesAvailable()>0)
     {
         array = clientSocket -> readAll();
         res += array;
     }
-    qDebug() << clientSocket_id << "called write()";
+    qDebug() << clientSocket << "called write()";
     clientSocket -> write(res.toUtf8());
 }
-// копия натива active_clients
+
 void MyTcpServer::slotClientDisconnected(){
     QTcpSocket* clientSocket = (QTcpSocket*)sender();
-    int userid = clientSocket->socketDescriptor();
-    qDebug() << "Client " <<userid<< " dc";
+    qDebug() << clientSocket << "disconnected\n";
+    active_clients.remove(clientSocket);
     clientSocket -> close();
-    active_clients.remove(userid);
-//    foreach(int i, active_clients.keys())
+//    if(active_clients.isEmpty())
 //    {
-//        qDebug() << active_clients[i]
-//                    << active_clients[i]->socketDescriptor();
+//        qDebug() << "Server is shutting down...";
+//        mTcpServer->~QTcpServer();
 //    }
 }

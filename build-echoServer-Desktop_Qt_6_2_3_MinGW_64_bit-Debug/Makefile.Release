@@ -196,6 +196,7 @@ release/moc_mytcpserver.cpp: ../server-source/mytcpserver.h \
 		C:/Qt/6.2.3/mingw_64/include/QtNetwork/QTcpSocket \
 		C:/Qt/6.2.3/mingw_64/include/QtNetwork/qtcpsocket.h \
 		C:/Qt/6.2.3/mingw_64/include/QtCore/qvariant.h \
+		C:/Qt/6.2.3/mingw_64/include/QtNetwork/QAbstractSocket \
 		C:/Qt/6.2.3/mingw_64/include/QtNetwork/QtNetwork \
 		C:/Qt/6.2.3/mingw_64/include/QtNetwork/QtNetworkDepends \
 		C:/Qt/6.2.3/mingw_64/include/QtCore/QtCore \
@@ -384,6 +385,7 @@ release/moc_mytcpserver.cpp: ../server-source/mytcpserver.h \
 		C:/Qt/6.2.3/mingw_64/include/QtNetwork/qudpsocket.h \
 		C:/Qt/6.2.3/mingw_64/include/QtNetwork/qtnetworkversion.h \
 		C:/Qt/6.2.3/mingw_64/include/QtCore/QDebug \
+		C:/Qt/6.2.3/mingw_64/include/QtCore/QMap \
 		release/moc_predefs.h \
 		C:/Qt/6.2.3/mingw_64/bin/moc.exe
 	C:\Qt\6.2.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/local/Desktop/serv/title-template/build-echoServer-Desktop_Qt_6_2_3_MinGW_64_bit-Debug/release/moc_predefs.h -IC:/Qt/6.2.3/mingw_64/mkspecs/win32-g++ -IC:/Users/local/Desktop/serv/title-template/server-source -IC:/Qt/6.2.3/mingw_64/include -IC:/Qt/6.2.3/mingw_64/include/QtNetwork -IC:/Qt/6.2.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw900_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw900_64/x86_64-w64-mingw32/include ..\server-source\mytcpserver.h -o release\moc_mytcpserver.cpp
@@ -509,6 +511,7 @@ release/main.o: ../server-source/main.cpp C:/Qt/6.2.3/mingw_64/include/QtCore/QC
 		C:/Qt/6.2.3/mingw_64/include/QtCore/qiodevice.h \
 		C:/Qt/6.2.3/mingw_64/include/QtNetwork/QTcpSocket \
 		C:/Qt/6.2.3/mingw_64/include/QtNetwork/qtcpsocket.h \
+		C:/Qt/6.2.3/mingw_64/include/QtNetwork/QAbstractSocket \
 		C:/Qt/6.2.3/mingw_64/include/QtNetwork/QtNetwork \
 		C:/Qt/6.2.3/mingw_64/include/QtNetwork/QtNetworkDepends \
 		C:/Qt/6.2.3/mingw_64/include/QtCore/QtCore \
@@ -680,7 +683,8 @@ release/main.o: ../server-source/main.cpp C:/Qt/6.2.3/mingw_64/include/QtCore/QC
 		C:/Qt/6.2.3/mingw_64/include/QtNetwork/qsslkey.h \
 		C:/Qt/6.2.3/mingw_64/include/QtNetwork/qudpsocket.h \
 		C:/Qt/6.2.3/mingw_64/include/QtNetwork/qtnetworkversion.h \
-		C:/Qt/6.2.3/mingw_64/include/QtCore/QDebug
+		C:/Qt/6.2.3/mingw_64/include/QtCore/QDebug \
+		C:/Qt/6.2.3/mingw_64/include/QtCore/QMap
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\main.o ..\server-source\main.cpp
 
 release/mytcpserver.o: ../server-source/mytcpserver.cpp ../server-source/mytcpserver.h \
@@ -771,6 +775,7 @@ release/mytcpserver.o: ../server-source/mytcpserver.cpp ../server-source/mytcpse
 		C:/Qt/6.2.3/mingw_64/include/QtNetwork/QTcpSocket \
 		C:/Qt/6.2.3/mingw_64/include/QtNetwork/qtcpsocket.h \
 		C:/Qt/6.2.3/mingw_64/include/QtCore/qvariant.h \
+		C:/Qt/6.2.3/mingw_64/include/QtNetwork/QAbstractSocket \
 		C:/Qt/6.2.3/mingw_64/include/QtNetwork/QtNetwork \
 		C:/Qt/6.2.3/mingw_64/include/QtNetwork/QtNetworkDepends \
 		C:/Qt/6.2.3/mingw_64/include/QtCore/QtCore \
@@ -959,6 +964,7 @@ release/mytcpserver.o: ../server-source/mytcpserver.cpp ../server-source/mytcpse
 		C:/Qt/6.2.3/mingw_64/include/QtNetwork/qudpsocket.h \
 		C:/Qt/6.2.3/mingw_64/include/QtNetwork/qtnetworkversion.h \
 		C:/Qt/6.2.3/mingw_64/include/QtCore/QDebug \
+		C:/Qt/6.2.3/mingw_64/include/QtCore/QMap \
 		C:/Qt/6.2.3/mingw_64/include/QtCore/QCoreApplication
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\mytcpserver.o ..\server-source\mytcpserver.cpp
 
