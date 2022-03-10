@@ -9,6 +9,7 @@
 #include <QDebug>
 #include <QMap>
 #include <QString>
+#include <QTime>
 
 class MyTcpServer : public QObject
 {

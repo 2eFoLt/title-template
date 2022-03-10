@@ -42,16 +42,14 @@ void MyTcpServer::slotNewConnection(){
 }
 
 void MyTcpServer::slotServerRead(){
-    QByteArray array;
     QTcpSocket* clientSocket = (QTcpSocket*)sender();
     QString res = "";
     while(clientSocket->bytesAvailable()>0)
     {
-        array = clientSocket -> readAll();
-        res += array;
+        res = clientSocket -> readLine();
     }
-    qDebug() << clientSocket << "called write()";
-    clientSocket -> write(res.toUtf8());
+    //qDebug() << clientSocket << "called write()";
+    clientSocket -> write(QTime::currentTime().toString().toUtf8() + ' ' + res.toUtf8());
 }
 
 void MyTcpServer::slotClientDisconnected(){
