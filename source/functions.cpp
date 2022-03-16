@@ -8,14 +8,14 @@ void parsing(QString input_str)
     {
         input_list.pop_front();
         login = input_list.front(); input_list.pop_front();
-        pass = input_list.front(); input_list.pop_front();
-        qDebug() << "reg called with" << login << ":" << pass;
+        pass = input_list.front();
+        qDebug() << "parsing() - reg called with" << login << ":" << pass;
     }
     if(input_list.front() == "auth")
     {
-        qDebug() << "parsing auth called";
+        input_list.pop_front();
         login = input_list.front(); input_list.pop_front();
-        pass = input_list.front(); input_list.pop_front();
-        qDebug() << "auth called with" << login << ":" << pass;
+        pass = input_list.front();
+        qDebug() << "parsing() - auth called with" << login << ":" << pass;
     }
 }

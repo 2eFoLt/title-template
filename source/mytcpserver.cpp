@@ -47,8 +47,8 @@ void MyTcpServer::slotServerRead(){
     {
         res = clientSocket -> readLine();
     }
-    //parsing(res);
-    clientSocket -> write(QTime::currentTime().toString().toUtf8() + ' ' + res.toUtf8());
+    parsing(res);
+    //clientSocket -> write(QTime::currentTime().toString().toUtf8() + ' ' + res.toUtf8());
 }
 
 void MyTcpServer::slotClientDisconnected(){
