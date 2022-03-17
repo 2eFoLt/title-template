@@ -1,7 +1,7 @@
 #include "mytcpserver.h"
 #include <QDebug>
 #include <QCoreApplication>
-
+#include "functions.cpp"
 MyTcpServer::~MyTcpServer()
 {
     mTcpServer->close();
@@ -35,8 +35,7 @@ void MyTcpServer::slotNewConnection(){
                 this, SLOT(slotClientDisconnected()));
         foreach(QTcpSocket* i, active_clients.keys())
         {
-            qDebug() << i
-                        << active_clients[i];
+            qDebug() << i << active_clients[i];
         }
     }
 }
@@ -48,8 +47,7 @@ void MyTcpServer::slotServerRead(){
     {
         res = clientSocket -> readLine();
     }
-    //qDebug() << clientSocket << "called write()";
-    clientSocket -> write(QTime::currentTime().toString().toUtf8() + ' ' + res.toUtf8());
+    clientSocket -> write(QTime::currentTime().toString().toUtf8() + ' ' + parsing(res).toUtf8());
 }
 
 void MyTcpServer::slotClientDisconnected(){
@@ -57,9 +55,4 @@ void MyTcpServer::slotClientDisconnected(){
     qDebug() << clientSocket << "disconnected\n";
     active_clients.remove(clientSocket);
     clientSocket -> close();
-//    if(active_clients.isEmpty())
-//    {
-//        qDebug() << "Server is shutting down...";
-//        mTcpServer->~QTcpServer();
-//    }
 }

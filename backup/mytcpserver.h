@@ -27,7 +27,7 @@ private:
     QTcpSocket* mTcpSocket;
     int server_status;
     QMap<QTcpSocket*, int> active_clients;
-    QMap<QString, QString> auth_db;
+    //QMap<QString, QString> auth_db;
 };
 #endif // MYTCPSERVER_H
 
