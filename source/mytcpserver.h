@@ -10,7 +10,10 @@
 #include <QMap>
 #include <QString>
 #include <QTime>
-
+//!
+//! \brief The MyTcpServer class
+//!
+//!
 class MyTcpServer : public QObject
 {
     Q_OBJECT
@@ -24,10 +27,9 @@ public slots:
 
 private:
     QTcpServer* mTcpServer;
-    QTcpSocket* mTcpSocket;
+    QTcpSocket* mTcpSocket; //?
     int server_status;
-    QMap<QTcpSocket*, int> active_clients;
-    //QMap<QString, QString> auth_db;
+    QMap<QTcpSocket*, int> active_clients; //QMap -> QList
 };
 #endif // MYTCPSERVER_H
 
