@@ -4,6 +4,10 @@
 #include <QList>
 #include <QDebug>
 
+//!
+//! \brief parsing
+//!
+
 void parsing();
 bool auth(QString login, QString pass);
 bool reg(QString login, QString pass);

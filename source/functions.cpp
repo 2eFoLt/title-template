@@ -1,10 +1,10 @@
 #include "functions.h"
-
-/* to-ask-list:
- * try-catch not working (?)
- * why auth()/reg()::QString?
- */
-
+//!
+//! \brief auth
+//! \param login
+//! \param pass
+//! \return
+//!
 bool auth(QString login, QString pass)
 {
     qDebug() << "auth called with" << login << pass;

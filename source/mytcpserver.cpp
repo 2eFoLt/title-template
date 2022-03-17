@@ -2,6 +2,9 @@
 #include <QDebug>
 #include <QCoreApplication>
 #include "functions.cpp"
+//!
+//! \brief MyTcpServer::~MyTcpServer
+//!
 MyTcpServer::~MyTcpServer()
 {
     mTcpServer->close();
