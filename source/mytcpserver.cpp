@@ -28,13 +28,14 @@ MyTcpServer::MyTcpServer(QObject *parent) : QObject(parent){
 void MyTcpServer::slotNewConnection(){
     if(server_status == 1)
     {
-        mTcpSocket = mTcpServer -> nextPendingConnection();
-        int userid_soc = mTcpSocket -> socketDescriptor();
-        active_clients[mTcpSocket] = userid_soc;
-        qDebug() << "New connection -" << userid_soc;
-        connect(active_clients.key(userid_soc), SIGNAL(readyRead()),
+        QTcpSocket* socket = mTcpServer -> nextPendingConnection();
+        int socket_id = socket -> socketDescriptor();
+        active_clients[socket] = socket_id;
+        //client_list.append(mTcpSocket);
+        qDebug() << "New connection -" << socket_id;
+        connect(active_clients.key(socket_id), SIGNAL(readyRead()),
                 this, SLOT(slotServerRead()));
-        connect(active_clients.key(userid_soc), SIGNAL(disconnected()),
+        connect(active_clients.key(socket_id), SIGNAL(disconnected()),
                 this, SLOT(slotClientDisconnected()));
         foreach(QTcpSocket* i, active_clients.keys())
         {
