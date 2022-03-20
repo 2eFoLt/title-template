@@ -29,7 +29,6 @@ private:
     QTcpServer* mTcpServer;
     int server_status;
     QMap<QTcpSocket*, int> active_clients;
-    //QList<QTcpSocket*> client_list;
 };
 #endif // MYTCPSERVER_H
 
