@@ -2,6 +2,7 @@
 #include <QDebug>
 #include <QCoreApplication>
 #include "functions.cpp"
+//!
 //! \brief Деструктор объекта сервера
 //!
 MyTcpServer::~MyTcpServer()

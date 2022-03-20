@@ -1,21 +1,24 @@
 var indexSectionsWithContent =
 {
-  0: "ms~",
+  0: "acfmprs~",
   1: "m",
-  2: "ms~"
+  2: "fm",
+  3: "acmprs~"
 };
 
 var indexSectionNames =
 {
   0: "all",
   1: "classes",
-  2: "functions"
+  2: "files",
+  3: "functions"
 };
 
 var indexSectionLabels =
 {
   0: "Указатель",
-  1: "Классы",
-  2: "Функции"
+  1: "Структуры данных",
+  2: "Файлы",
+  3: "Функции"
 };
 

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mytcpserver_0',['MyTcpServer',['../class_my_tcp_server.html',1,'MyTcpServer'],['../class_my_tcp_server.html#acf367c4695b4d160c7a2d25c2afaaec4',1,'MyTcpServer::MyTcpServer()']]]
+  ['auth_0',['auth',['../functions_8cpp.html#af9868f75b692da11bef94182641b369d',1,'auth(QString login, QString pass):&#160;functions.cpp'],['../functions_8h.html#af9868f75b692da11bef94182641b369d',1,'auth(QString login, QString pass):&#160;functions.cpp']]]
 ];
