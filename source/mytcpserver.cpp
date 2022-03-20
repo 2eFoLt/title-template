@@ -2,8 +2,7 @@
 #include <QDebug>
 #include <QCoreApplication>
 #include "functions.cpp"
-//!
-//! \brief MyTcpServer::~MyTcpServer
+//! \brief Деструктор объекта сервера
 //!
 MyTcpServer::~MyTcpServer()
 {
@@ -11,6 +10,10 @@ MyTcpServer::~MyTcpServer()
     server_status = 0;
 }
 
+//! \brief Конструктор объекта сервера
+//! \details Проводит инициализвацию объекта сервера с последующим уведомлением в qDebug о статусе сервера.
+//! \param parent Родительский объект {QObject}
+//!
 MyTcpServer::MyTcpServer(QObject *parent) : QObject(parent){
     mTcpServer = new QTcpServer(this);
     connect(mTcpServer, &QTcpServer::newConnection,
@@ -25,6 +28,9 @@ MyTcpServer::MyTcpServer(QObject *parent) : QObject(parent){
     }
 }
 
+//! \brief Слот нового подключения
+//! \details Создаёт новый объект сокета, инициализирует его и проводит запись в список активных клиентов.
+//!
 void MyTcpServer::slotNewConnection(){
     if(server_status == 1)
     {
@@ -44,6 +50,9 @@ void MyTcpServer::slotNewConnection(){
     }
 }
 
+//! \brief Слот чтения
+//! \details Считывает вводимые клиентом данные и передаёт их в функцию парсера.
+//!
 void MyTcpServer::slotServerRead(){
     QTcpSocket* clientSocket = (QTcpSocket*)sender();
     QString res = "";
@@ -54,6 +63,9 @@ void MyTcpServer::slotServerRead(){
     clientSocket -> write(QTime::currentTime().toString().toUtf8() + ' ' + parsing(res).toUtf8());
 }
 
+//! \brief Слот отключения
+//! \details Убирает сокет из списка активных и закрывает его.
+//!
 void MyTcpServer::slotClientDisconnected(){
     QTcpSocket* clientSocket = (QTcpSocket*)sender();
     qDebug() << clientSocket << "disconnected\n";

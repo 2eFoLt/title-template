@@ -4,10 +4,9 @@
 #include <QList>
 #include <QDebug>
 
+//! \brief Файл с некоторыми функциями сервера.
+//! \details Здесь реализованы функции регистрации\аутентификации пользователя и анализа вводимого текста.
 //!
-//! \brief parsing
-//!
-
 void parsing();
 bool auth(QString login, QString pass);
 bool reg(QString login, QString pass);

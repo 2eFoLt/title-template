@@ -10,9 +10,9 @@
 #include <QMap>
 #include <QString>
 #include <QTime>
-//!
-//! \brief The MyTcpServer class
-//!
+
+//! \brief Родительский класс сервера с базовыми настройками.
+//! В данном классе реализованы слоты под подключение клиентов, отслеживание активных клиентов-соединений.
 //!
 class MyTcpServer : public QObject
 {
