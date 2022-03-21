@@ -10,7 +10,7 @@
 #include <QMap>
 #include <QString>
 #include <QTime>
-#include "sqldatabase.h"
+#include "msqldatabase.h"
 //! \brief Родительский класс сервера с базовыми настройками.
 //! В данном классе реализованы слоты под подключение клиентов, отслеживание активных клиентов-соединений.
 //!

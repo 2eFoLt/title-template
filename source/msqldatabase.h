@@ -1,7 +1,7 @@
 #ifndef SQLDB_H
 #define SQLDB_H
-#include <QVariant>
 #include <QCoreApplication>
+#include <QVariant>
 #include <QDebug>
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSqlQuery>

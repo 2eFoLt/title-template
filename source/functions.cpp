@@ -1,5 +1,5 @@
 #include "functions.h"
-#include "sqldatabase.h"
+#include "msqldatabase.h"
 //! \brief Функция аутентификации пользователя
 //! \details Функция обращается к базе данных, проверяет наличие введённой пары и проводит валидацию данных.
 //! \param login Логин пользователя {char, max 20 символов}
