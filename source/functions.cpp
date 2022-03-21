@@ -1,14 +1,15 @@
 #include "functions.h"
+#include "sqldatabase.h"
 //! \brief Функция аутентификации пользователя
 //! \details Функция обращается к базе данных, проверяет наличие введённой пары и проводит валидацию данных.
 //! \param login Логин пользователя {char, max 20 символов}
 //! \param pass Пароль пользователя
 //! \return Возвращает сигнал true, если в базе данных найдена введённая пара логин\пароль
 //!
-bool auth(QString login, QString pass)
+QString auth(QString login, QString pass)
 {
     qDebug() << "auth called with" << login << pass;
-    return true;
+    return "auth";
 }
 
 //! \brief Функция регистрации нового пользователя
@@ -17,10 +18,10 @@ bool auth(QString login, QString pass)
 //! \param pass Пароль пользователя {char, max 20 символов}
 //! \return Возвращает сигнал true, если в базе данных введённая пара ранее отсутствовала и была успешно добавлена.
 //!
-bool reg(QString login, QString pass)
+QString reg(QString login, QString pass, SQLdb* link)
 {
     qDebug() << "reg called with" << login << pass;
-    return true;
+    return link -> insert_new(login, pass);
 }
 
 //! \brief Шаблон специализированной функции
@@ -30,10 +31,10 @@ bool reg(QString login, QString pass)
 //! \param arg3 Аргумент 3
 //! \return Возвращает что-то...
 //!
-bool custom_func(QString arg1, QString arg2, QString arg3)
+QString custom_func(QString arg1, QString arg2, QString arg3)
 {
     qDebug() << "custom_func called with" << arg1 << arg2 << arg3;
-    return true;
+    return "custom-called";
 }
 
 //! \brief Функция парсинга
@@ -41,7 +42,7 @@ bool custom_func(QString arg1, QString arg2, QString arg3)
 //! \param input_str Переменная для хранения разбитой функции
 //! \return Возвращает статус вызова функции. Приведено к человекочитаемому формату.
 //!
-QString parsing(QString input_str)
+QString parsing(QString input_str, SQLdb* link)
 {
     if(input_str.contains('&'))
     {
@@ -56,7 +57,7 @@ QString parsing(QString input_str)
             arg2 = input_list.front(); input_list.pop_front();
             arg3 = input_list.front();
             if(arg1 == "" or arg2 == "" or arg3 == "") return "empty-arguments";
-            if(custom_func(arg1, arg2, arg3)) return "custom_func_success";
+            else return custom_func(arg1, arg2, arg3);
         }
         if(input_list.front() == "reg")
         {
@@ -65,7 +66,7 @@ QString parsing(QString input_str)
             login = input_list.front(); input_list.pop_front();
             pass = input_list.front();
             if(login == "" or pass == "") return "empty-arguments";
-            if(reg(login, pass)) return "reg_success";
+            else return reg(login, pass, link);
         }
         if(input_list.front() == "auth")
         {
@@ -74,8 +75,7 @@ QString parsing(QString input_str)
             login = input_list.front(); input_list.pop_front();
             pass = input_list.front();
             if(login == "" or pass == "") return "empty-arguments";
-            if(auth(login, pass)) return "auth_success";
-                else return "auth_failure";
+            else return auth(login, pass);
         }
         else return "unknown-func";
     }

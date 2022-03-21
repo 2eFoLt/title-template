@@ -1,7 +1,7 @@
-#include "mytcpserver.h"
 #include <QDebug>
 #include <QCoreApplication>
 #include "functions.cpp"
+#include "mytcpserver.h"
 //!
 //! \brief Деструктор объекта сервера
 //!
@@ -38,7 +38,6 @@ void MyTcpServer::slotNewConnection(){
         QTcpSocket* socket = mTcpServer -> nextPendingConnection();
         int socket_id = socket -> socketDescriptor();
         active_clients[socket] = socket_id;
-        //client_list.append(mTcpSocket);
         qDebug() << "New connection -" << socket_id;
         connect(active_clients.key(socket_id), SIGNAL(readyRead()),
                 this, SLOT(slotServerRead()));
@@ -57,11 +56,12 @@ void MyTcpServer::slotNewConnection(){
 void MyTcpServer::slotServerRead(){
     QTcpSocket* clientSocket = (QTcpSocket*)sender();
     QString res = "";
+    SQLdb* link = &mydb;
     while(clientSocket->bytesAvailable()>0)
     {
         res = clientSocket -> readLine();
     }
-    clientSocket -> write(QTime::currentTime().toString().toUtf8() + ' ' + parsing(res).toUtf8());
+    clientSocket -> write(QTime::currentTime().toString().toUtf8() + ' ' + parsing(res, link).toUtf8());
 }
 
 //! \brief Слот отключения

@@ -10,7 +10,7 @@
 #include <QMap>
 #include <QString>
 #include <QTime>
-
+#include "sqldatabase.h"
 //! \brief Родительский класс сервера с базовыми настройками.
 //! В данном классе реализованы слоты под подключение клиентов, отслеживание активных клиентов-соединений.
 //!
@@ -27,6 +27,7 @@ public slots:
 
 private:
     QTcpServer* mTcpServer;
+    SQLdb mydb;
     int server_status;
     QMap<QTcpSocket*, int> active_clients;
 };
