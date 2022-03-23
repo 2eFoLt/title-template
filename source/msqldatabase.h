@@ -8,7 +8,9 @@
 #include <QtSql/QSqlError>
 #include <QtSql/QSqlRecord>
 #include <QString>
-
+//!
+//! \brief Класс для работы с БД
+//! \details В данном классе реализованы необходимые для удобной работы с БД функции и объекты.
 class SQLdb
 {
 private:

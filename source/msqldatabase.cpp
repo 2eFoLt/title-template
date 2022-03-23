@@ -1,5 +1,7 @@
 #include "msqldatabase.h"
-
+//!
+//! \brief Конструктор объекта класса SQLdb
+//!
 SQLdb::SQLdb()
 {
     db = QSqlDatabase::addDatabase("QSQLITE");
@@ -13,12 +15,21 @@ SQLdb::SQLdb()
                ")");
 }
 
+//!
+//! \brief Деструктор объекта класса SQLdb
+//!
 SQLdb::~SQLdb()
 {
     query.exec("DROP TABLE User");
     db.close();
 }
 
+//!
+//! \brief Функция для добавления новой записи в БД
+//! \param log Логин пользователя
+//! \param pssw Пароль пользователя
+//! \return Если пара найдена в базе, то регистрация считается успешной. Если в БД найден только логин, а пароль не совпадает - регистрация провалена.
+//!
 QString SQLdb::insert_new(QString log, QString pssw)
 {
     if(query.isNull(log))
@@ -33,6 +44,9 @@ QString SQLdb::insert_new(QString log, QString pssw)
     else return "user-already-exist";
 }
 
+//!
+//! \brief Функция вывода всех записей БД
+//!
 void SQLdb::print_db()
 {
     query.exec("SELECT * FROM User");

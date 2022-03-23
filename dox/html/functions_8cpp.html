@@ -73,31 +73,32 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="functions_8h_source.html">functions.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="msqldatabase_8h_source.html">msqldatabase.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Функции</h2></td></tr>
-<tr class="memitem:af9868f75b692da11bef94182641b369d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="functions_8cpp.html#af9868f75b692da11bef94182641b369d">auth</a> (QString login, QString pass)</td></tr>
-<tr class="memdesc:af9868f75b692da11bef94182641b369d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция аутентификации пользователя  <a href="functions_8cpp.html#af9868f75b692da11bef94182641b369d">Подробнее...</a><br /></td></tr>
-<tr class="separator:af9868f75b692da11bef94182641b369d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5496070e8978ec4370d47b21984c6b9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="functions_8cpp.html#af5496070e8978ec4370d47b21984c6b9">reg</a> (QString login, QString pass)</td></tr>
-<tr class="memdesc:af5496070e8978ec4370d47b21984c6b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция регистрации нового пользователя  <a href="functions_8cpp.html#af5496070e8978ec4370d47b21984c6b9">Подробнее...</a><br /></td></tr>
-<tr class="separator:af5496070e8978ec4370d47b21984c6b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54d7a8dff1c7bb17a1e718b5388edaca"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="functions_8cpp.html#a54d7a8dff1c7bb17a1e718b5388edaca">custom_func</a> (QString arg1, QString arg2, QString arg3)</td></tr>
-<tr class="memdesc:a54d7a8dff1c7bb17a1e718b5388edaca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Шаблон специализированной функции  <a href="functions_8cpp.html#a54d7a8dff1c7bb17a1e718b5388edaca">Подробнее...</a><br /></td></tr>
-<tr class="separator:a54d7a8dff1c7bb17a1e718b5388edaca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1f4f725a220a5f1c229d944d2f26394"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="functions_8cpp.html#aa1f4f725a220a5f1c229d944d2f26394">parsing</a> (QString input_str)</td></tr>
-<tr class="memdesc:aa1f4f725a220a5f1c229d944d2f26394"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция парсинга  <a href="functions_8cpp.html#aa1f4f725a220a5f1c229d944d2f26394">Подробнее...</a><br /></td></tr>
-<tr class="separator:aa1f4f725a220a5f1c229d944d2f26394"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a028e7a5af60097499d08e12f03909c6f"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="functions_8cpp.html#a028e7a5af60097499d08e12f03909c6f">auth</a> (QString login, QString pass)</td></tr>
+<tr class="memdesc:a028e7a5af60097499d08e12f03909c6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция аутентификации пользователя  <a href="functions_8cpp.html#a028e7a5af60097499d08e12f03909c6f">Подробнее...</a><br /></td></tr>
+<tr class="separator:a028e7a5af60097499d08e12f03909c6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0da8331460bb3891276d914a0416ff8a"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="functions_8cpp.html#a0da8331460bb3891276d914a0416ff8a">reg</a> (QString login, QString pass, <a class="el" href="class_s_q_ldb.html">SQLdb</a> *link)</td></tr>
+<tr class="memdesc:a0da8331460bb3891276d914a0416ff8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция регистрации нового пользователя  <a href="functions_8cpp.html#a0da8331460bb3891276d914a0416ff8a">Подробнее...</a><br /></td></tr>
+<tr class="separator:a0da8331460bb3891276d914a0416ff8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b97666e27dbf77837865bf837a032c9"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="functions_8cpp.html#a4b97666e27dbf77837865bf837a032c9">custom_func</a> (QString arg1, QString arg2, QString arg3)</td></tr>
+<tr class="memdesc:a4b97666e27dbf77837865bf837a032c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Шаблон специализированной функции  <a href="functions_8cpp.html#a4b97666e27dbf77837865bf837a032c9">Подробнее...</a><br /></td></tr>
+<tr class="separator:a4b97666e27dbf77837865bf837a032c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1bab1f5e6375733fc3b01cfcbc35cda"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="functions_8cpp.html#aa1bab1f5e6375733fc3b01cfcbc35cda">parsing</a> (QString input_str, <a class="el" href="class_s_q_ldb.html">SQLdb</a> *link)</td></tr>
+<tr class="memdesc:aa1bab1f5e6375733fc3b01cfcbc35cda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция парсинга  <a href="functions_8cpp.html#aa1bab1f5e6375733fc3b01cfcbc35cda">Подробнее...</a><br /></td></tr>
+<tr class="separator:aa1bab1f5e6375733fc3b01cfcbc35cda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Функции</h2>
-<a id="af9868f75b692da11bef94182641b369d" name="af9868f75b692da11bef94182641b369d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af9868f75b692da11bef94182641b369d">&#9670;&nbsp;</a></span>auth()</h2>
+<a id="a028e7a5af60097499d08e12f03909c6f" name="a028e7a5af60097499d08e12f03909c6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a028e7a5af60097499d08e12f03909c6f">&#9670;&nbsp;</a></span>auth()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool auth </td>
+          <td class="memname">QString auth </td>
           <td>(</td>
           <td class="paramtype">QString&#160;</td>
           <td class="paramname"><em>login</em>, </td>
@@ -120,7 +121,7 @@ $(function() {
 <p >Функция обращается к базе данных, проверяет наличие введённой пары и проводит валидацию данных. </p><dl class="params"><dt>Аргументы</dt><dd>
   <table class="params">
     <tr><td class="paramname">login</td><td>Логин пользователя {char, max 20 символов} </td></tr>
-    <tr><td class="paramname">pass</td><td>Пароль пользователя </td></tr>
+    <tr><td class="paramname">pass</td><td>Пароль пользователя {char, max 20 символов} </td></tr>
   </table>
   </dd>
 </dl>
@@ -128,14 +129,14 @@ $(function() {
 
 </div>
 </div>
-<a id="a54d7a8dff1c7bb17a1e718b5388edaca" name="a54d7a8dff1c7bb17a1e718b5388edaca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a54d7a8dff1c7bb17a1e718b5388edaca">&#9670;&nbsp;</a></span>custom_func()</h2>
+<a id="a4b97666e27dbf77837865bf837a032c9" name="a4b97666e27dbf77837865bf837a032c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b97666e27dbf77837865bf837a032c9">&#9670;&nbsp;</a></span>custom_func()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool custom_func </td>
+          <td class="memname">QString custom_func </td>
           <td>(</td>
           <td class="paramtype">QString&#160;</td>
           <td class="paramname"><em>arg1</em>, </td>
@@ -173,8 +174,8 @@ $(function() {
 
 </div>
 </div>
-<a id="aa1f4f725a220a5f1c229d944d2f26394" name="aa1f4f725a220a5f1c229d944d2f26394"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa1f4f725a220a5f1c229d944d2f26394">&#9670;&nbsp;</a></span>parsing()</h2>
+<a id="aa1bab1f5e6375733fc3b01cfcbc35cda" name="aa1bab1f5e6375733fc3b01cfcbc35cda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1bab1f5e6375733fc3b01cfcbc35cda">&#9670;&nbsp;</a></span>parsing()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -183,8 +184,18 @@ $(function() {
           <td class="memname">QString parsing </td>
           <td>(</td>
           <td class="paramtype">QString&#160;</td>
-          <td class="paramname"><em>input_str</em></td><td>)</td>
+          <td class="paramname"><em>input_str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="class_s_q_ldb.html">SQLdb</a> *&#160;</td>
+          <td class="paramname"><em>link</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -200,14 +211,14 @@ $(function() {
 
 </div>
 </div>
-<a id="af5496070e8978ec4370d47b21984c6b9" name="af5496070e8978ec4370d47b21984c6b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af5496070e8978ec4370d47b21984c6b9">&#9670;&nbsp;</a></span>reg()</h2>
+<a id="a0da8331460bb3891276d914a0416ff8a" name="a0da8331460bb3891276d914a0416ff8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0da8331460bb3891276d914a0416ff8a">&#9670;&nbsp;</a></span>reg()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool reg </td>
+          <td class="memname">QString reg </td>
           <td>(</td>
           <td class="paramtype">QString&#160;</td>
           <td class="paramname"><em>login</em>, </td>
@@ -216,7 +227,13 @@ $(function() {
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">QString&#160;</td>
-          <td class="paramname"><em>pass</em>&#160;</td>
+          <td class="paramname"><em>pass</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_s_q_ldb.html">SQLdb</a> *&#160;</td>
+          <td class="paramname"><em>link</em>&#160;</td>
         </tr>
         <tr>
           <td></td>

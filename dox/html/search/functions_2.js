@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['main_0',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]],
-  ['mytcpserver_1',['MyTcpServer',['../class_my_tcp_server.html#acf367c4695b4d160c7a2d25c2afaaec4',1,'MyTcpServer']]]
+  ['insert_5fnew_0',['insert_new',['../class_s_q_ldb.html#a4b307bf03a75a7d53d44bd8f44ae2ff4',1,'SQLdb']]]
 ];
