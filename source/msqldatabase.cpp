@@ -41,13 +41,15 @@ QString SQLdb::insert_new(QString log, QString pssw)
     QSqlRecord rec = query.record();
     const int loginIndex = rec.indexOf("login");//номер "столбца"
     const int passwordIndex = rec.indexOf("password");
-    if(rec.value(loginIndex).isNull())
+    qDebug() << loginIndex << passwordIndex << query.size();
+
+    if(query.value(loginIndex).isNull())
     {
         query.prepare("INSERT INTO User(login, password) "
                           "VALUES (:login, :password)");
         query.bindValue(":password", pssw); query.bindValue(":login", log);
         query.exec();// выполнить запрос
-        qDebug() << loginIndex << passwordIndex << rec.value(loginIndex) << rec.value(passwordIndex);
+        qDebug() << loginIndex << passwordIndex << query.value(loginIndex) << query.value(passwordIndex);
         return "register-success";
     }
     else if(query.value(log) != pssw) return "wrong-password";
@@ -58,7 +60,7 @@ QString SQLdb::auth(QString log, QString pssw)
 {
     pssw = pssw.remove((pssw.size()-2), (pssw.size()-1));
     qDebug() << log << pssw;
-    query.exec("SELECT login FROM User WHERE login==" + log);
+    query.exec("SELECT * FROM User WHERE login==" + log);
     QSqlRecord rec = query.record();
     if(!rec.isEmpty())
     {
