@@ -20,6 +20,7 @@ public:
     SQLdb();
     ~SQLdb();
     QString insert_new(QString log, QString pssw);
+    QString auth(QString log, QString pssw);
     void print_db();
 
 };

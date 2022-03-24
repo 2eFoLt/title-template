@@ -6,10 +6,10 @@
 //! \param pass Пароль пользователя {char, max 20 символов}
 //! \return Возвращает сигнал true, если в базе данных найдена введённая пара логин\пароль
 //!
-QString auth(QString login, QString pass)
+QString auth(QString login, QString pass, SQLdb* link)
 {
     qDebug() << "auth called with" << login << pass;
-    return "auth";
+    return link -> auth(login, pass);
 }
 
 //! \brief Функция регистрации нового пользователя
@@ -75,7 +75,7 @@ QString parsing(QString input_str, SQLdb* link)
             login = input_list.front(); input_list.pop_front();
             pass = input_list.front();
             if(login == "" or pass == "") return "empty-arguments";
-            else return auth(login, pass);
+            else return auth(login, pass, link);
         }
         else return "unknown-func";
     }

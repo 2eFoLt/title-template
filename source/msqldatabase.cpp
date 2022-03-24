@@ -20,6 +20,7 @@ SQLdb::SQLdb()
 //!
 SQLdb::~SQLdb()
 {
+    qDebug() << "destructor for SQLdb called";
     query.exec("DROP TABLE User");
     db.close();
 }
@@ -32,16 +33,39 @@ SQLdb::~SQLdb()
 //!
 QString SQLdb::insert_new(QString log, QString pssw)
 {
-    if(query.isNull(log))
+    pssw = pssw.remove((pssw.size()-2), (pssw.size()-1));
+    qDebug() << log << pssw;
+    query.prepare("SELECT login FROM User WHERE login==:login");
+    query.bindValue(":login", log);
+    query.exec();
+    QSqlRecord rec = query.record();
+    const int loginIndex = rec.indexOf("login");//номер "столбца"
+    const int passwordIndex = rec.indexOf("password");
+    if(rec.value(loginIndex).isNull())
     {
         query.prepare("INSERT INTO User(login, password) "
                           "VALUES (:login, :password)");
         query.bindValue(":password", pssw); query.bindValue(":login", log);
         query.exec();// выполнить запрос
+        qDebug() << loginIndex << passwordIndex << rec.value(loginIndex) << rec.value(passwordIndex);
         return "register-success";
     }
     else if(query.value(log) != pssw) return "wrong-password";
     else return "user-already-exist";
+}
+
+QString SQLdb::auth(QString log, QString pssw)
+{
+    pssw = pssw.remove((pssw.size()-2), (pssw.size()-1));
+    qDebug() << log << pssw;
+    query.exec("SELECT login FROM User WHERE login==" + log);
+    QSqlRecord rec = query.record();
+    if(!rec.isEmpty())
+    {
+        if(query.value(log) != pssw) return "wrong-password";
+        else return "auth-success";
+    }
+    else return "no-such-user";
 }
 
 //!
