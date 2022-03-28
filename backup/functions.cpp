@@ -1,32 +1,68 @@
 #include "functions.h"
-
-/* to-ask-list:
- * try-catch not working (?)
- * why auth()/reg()::QString?
- */
-
-bool auth(QString login, QString pass)
+#include "msqldatabase.h"
+//! \brief Функция аутентификации пользователя
+//! \details Функция обращается к базе данных, проверяет наличие введённой пары и проводит валидацию данных.
+//! \param login Логин пользователя {char, max 20 символов}
+//! \param pass Пароль пользователя {char, max 20 символов}
+//! \return Возвращает сигнал true, если в базе данных найдена введённая пара логин\пароль
+//!
+QString auth(QString login, QString pass, SQLdb* link)
 {
-    qDebug() << "auth called with" << login << pass;
-    return true;
+    //qDebug() << "auth called with" << login << pass;
+    return link -> auth(login, pass);
 }
-bool reg(QString login, QString pass)
+
+//! \brief Функция регистрации нового пользователя
+//! \details Функция обращается к базе данных, проверяет отсутствие введённой пары и проводит запись пары в базу данных.
+//! \param login Логин пользователя {char, max 20 символов}
+//! \param pass Пароль пользователя {char, max 20 символов}
+//! \return Возвращает сигнал true, если в базе данных введённая пара ранее отсутствовала и была успешно добавлена.
+//!
+QString reg(QString login, QString pass, SQLdb* link)
 {
-    qDebug() << "reg called with" << login << pass;
-    return true;
+    //qDebug() << "reg called with" << login << pass;
+    return link -> insert_new(login, pass);
 }
-bool custom_func(QString arg1, QString arg2, QString arg3)
+
+//! \brief Шаблон специализированной функции
+//! \details Заготовка трёхаргументной функции с заглушкой.
+//! \param arg1 Аргумент 1
+//! \param arg2 Аргумент 2
+//! \param arg3 Аргумент 3
+//! \return Возвращает что-то...
+//!
+QString custom_func(QString arg1, QString arg2, QString arg3)
 {
     qDebug() << "custom_func called with" << arg1 << arg2 << arg3;
-    return true;
+    return "custom-called";
 }
-QString parsing(QString input_str)
+
+//!
+//! \brief Функция вывода содержимого БД
+//! \param link Ссылка на объект БД
+//! \return Статус функции
+//!
+QString printdb(SQLdb* link)
+{
+    //qDebug() << "print() called";
+    link -> print_db();
+    return "db-print";
+}
+//! \brief Функция парсинга
+//! \details Функция анализа вводимого текста. Воспринимает шаблоны xxx&xxx&xxx как вызовы функций, остальное выводит на экран пользователя.
+//! \param input_str Переменная для хранения разбитой функции
+//! \return Возвращает статус вызова функции. Приведено к человекочитаемому формату.
+//!
+QString parsing(QString input_str, SQLdb* link)
 {
     if(input_str.contains('&'))
     {
         QList input_list = input_str.split('&');
         QString login, pass, arg1, arg2, arg3;
-        qDebug() << input_list.count();
+        if(input_list.front() == "print")
+        {
+            return printdb(link);
+        }
         if(input_list.front() != "reg" and input_list.front() != "auth")
         {
             if(input_list.count() < 4) return "not-enough-arguments";
@@ -35,7 +71,7 @@ QString parsing(QString input_str)
             arg2 = input_list.front(); input_list.pop_front();
             arg3 = input_list.front();
             if(arg1 == "" or arg2 == "" or arg3 == "") return "empty-arguments";
-            if(custom_func(arg1, arg2, arg3)) return "custom_func_success";
+            else return custom_func(arg1, arg2, arg3);
         }
         if(input_list.front() == "reg")
         {
@@ -44,7 +80,7 @@ QString parsing(QString input_str)
             login = input_list.front(); input_list.pop_front();
             pass = input_list.front();
             if(login == "" or pass == "") return "empty-arguments";
-            if(reg(login, pass)) return "reg_success";
+            else return reg(login, pass, link);
         }
         if(input_list.front() == "auth")
         {
@@ -53,8 +89,7 @@ QString parsing(QString input_str)
             login = input_list.front(); input_list.pop_front();
             pass = input_list.front();
             if(login == "" or pass == "") return "empty-arguments";
-            if(auth(login, pass)) return "auth_success";
-                else return "auth_failure";
+            else return auth(login, pass, link);
         }
         else return "unknown-func";
     }
