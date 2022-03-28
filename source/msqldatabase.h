@@ -3,10 +3,10 @@
 #include <QCoreApplication>
 #include <QVariant>
 #include <QDebug>
-#include <QtSql/QSqlDatabase>
-#include <QtSql/QSqlQuery>
-#include <QtSql/QSqlError>
-#include <QtSql/QSqlRecord>
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QSqlError>
+#include <QSqlRecord>
 #include <QString>
 //!
 //! \brief Класс для работы с БД

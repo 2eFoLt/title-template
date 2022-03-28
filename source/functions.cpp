@@ -8,7 +8,7 @@
 //!
 QString auth(QString login, QString pass, SQLdb* link)
 {
-    qDebug() << "auth called with" << login << pass;
+    //qDebug() << "auth called with" << login << pass;
     return link -> auth(login, pass);
 }
 
@@ -20,7 +20,7 @@ QString auth(QString login, QString pass, SQLdb* link)
 //!
 QString reg(QString login, QString pass, SQLdb* link)
 {
-    qDebug() << "reg called with" << login << pass;
+    //qDebug() << "reg called with" << login << pass;
     return link -> insert_new(login, pass);
 }
 
@@ -37,6 +37,17 @@ QString custom_func(QString arg1, QString arg2, QString arg3)
     return "custom-called";
 }
 
+//!
+//! \brief Функция вывода содержимого БД
+//! \param link Ссылка на объект БД
+//! \return Статус функции
+//!
+QString printdb(SQLdb* link)
+{
+    //qDebug() << "print() called";
+    link -> print_db();
+    return "db-print";
+}
 //! \brief Функция парсинга
 //! \details Функция анализа вводимого текста. Воспринимает шаблоны xxx&xxx&xxx как вызовы функций, остальное выводит на экран пользователя.
 //! \param input_str Переменная для хранения разбитой функции
@@ -48,7 +59,10 @@ QString parsing(QString input_str, SQLdb* link)
     {
         QList input_list = input_str.split('&');
         QString login, pass, arg1, arg2, arg3;
-        qDebug() << input_list.count();
+        if(input_list.front() == "print")
+        {
+            return printdb(link);
+        }
         if(input_list.front() != "reg" and input_list.front() != "auth")
         {
             if(input_list.count() < 4) return "not-enough-arguments";

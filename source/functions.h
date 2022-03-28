@@ -11,5 +11,6 @@ QString parsing();
 QString auth(QString login, QString pass);
 QString reg(QString login, QString pass);
 QString custom_func(QString arg1, QString arg2, QString arg3);
+QString printdb();
 
 #endif // FUNCTIONS_H
