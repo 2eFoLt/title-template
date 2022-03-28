@@ -61,7 +61,8 @@ void MyTcpServer::slotServerRead(){
     {
         res = clientSocket -> readLine();
     }
-    clientSocket -> write(QTime::currentTime().toString().toUtf8() + ' ' + parsing(res, link).toUtf8());
+    qDebug() << res;
+    clientSocket -> write(parsing(res, link).toUtf8());
 }
 
 //! \brief Слот отключения
