@@ -21,7 +21,7 @@ void MainWindow::on_connectButton_clicked()
     clientSoc->connectToHost(host, 33333);
     if(clientSoc->isWritable()) ui->connectionStatus->setText("Connected!");
     ui->connectButton->hide();
-    clientSoc -> readAll();
+    emit clientSoc -> readyRead();
 }
 
 
