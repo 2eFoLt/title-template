@@ -95,6 +95,6 @@ QString parsing(QString input_str, SQLdb* link)
     }
     else
     {
-        return input_str;
+        return "respond-string";
     }
 }

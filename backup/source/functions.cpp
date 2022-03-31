@@ -8,7 +8,7 @@
 //!
 QString auth(QString login, QString pass, SQLdb* link)
 {
-    //qDebug() << "auth called with" << login << pass;
+    qDebug() << "auth called with" << login << pass;
     return link -> auth(login, pass);
 }
 
@@ -20,7 +20,7 @@ QString auth(QString login, QString pass, SQLdb* link)
 //!
 QString reg(QString login, QString pass, SQLdb* link)
 {
-    //qDebug() << "reg called with" << login << pass;
+    qDebug() << "reg called with" << login << pass;
     return link -> insert_new(login, pass);
 }
 
@@ -95,6 +95,6 @@ QString parsing(QString input_str, SQLdb* link)
     }
     else
     {
-        return input_str;
+        return "respond-string";
     }
 }
