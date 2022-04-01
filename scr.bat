@@ -1,4 +1,6 @@
 @echo off
-del /s *.pro.user
-echo Removed all pro.user files, clean to commit/push
+del /s /q *.pro.user
+rmdir /s /q build-echoClient-Desktop_Qt_6_2_3_MinGW_64_bit-Debug
+rmdir /s /q build-echoServer-Desktop_Qt_6_2_3_MinGW_64_bit-Debug
+echo Clean to commit/push
 pause
