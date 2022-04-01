@@ -21,6 +21,8 @@ private slots:
 
     void on_execButton_clicked();
 
+    void on_sendTaskButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     QTcpSocket* clientSoc;
