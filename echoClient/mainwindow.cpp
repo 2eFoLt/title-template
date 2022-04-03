@@ -1,6 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+//!
+//! \brief Конструктор объекта приложения
+//! \param parent Родительский объект интерфейса
+//!
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -10,13 +14,19 @@ MainWindow::MainWindow(QWidget *parent)
     ui->answerBox->hide();
 }
 
+//!
+//! \brief Деструктор объекта приложения
+//!
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
-
-void MainWindow::on_connectButton_clicked()
+//!
+//! \brief Функция кнопки подключения
+//! \details Обрабатывает взаимодействие с сервером и проверяет успешное подключение к нему
+//!
+void MainWindow::connectButton_clicked()
 {
     QHostAddress host = QHostAddress("127.0.0.1");
     QByteArray ans = "null";
@@ -29,8 +39,11 @@ void MainWindow::on_connectButton_clicked()
     ui->connectButton->hide();
 }
 
-
-void MainWindow::on_execButton_clicked()
+//!
+//! \brief Функция кнопки-обработчика запросов
+//! \details Обрабатывает вводимые пользователем данные и пересылает их на сервер, далее обрабатывает ответ сервера и выводит результат на экран
+//!
+void MainWindow::execButton_clicked()
 {
     if(clientSoc->isOpen() and clientSoc->isWritable())
     {
@@ -57,7 +70,11 @@ void MainWindow::on_execButton_clicked()
     }
 }
 
-void MainWindow::on_sendTaskButton_clicked()
+//!
+//! \brief Функция кнопки-обработчика проверки ответов на задания
+//! \details Обрабатывает вводимые пользователям данные о задаче и пересылает их на сервер, далее обрабатывает ответ сервера и выводит результат на экран
+//!
+void MainWindow::sendTaskButton_clicked()
 {
     QString query = ui->taskLine->text() + "%" + ui->spinBox->text();
     qDebug() << "sent:" << query << "\n";
