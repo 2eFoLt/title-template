@@ -22,20 +22,28 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+QString MainWindow::cts_SendToServ(QString msg)
+{
+    QString serverRespond;
+    if(!(clientSoc -> isWritable())) return "cannot-write";
+    if(!(clientSoc -> bytesAvailable()==0)) return "busy-stream";
+    clientSoc -> write(msg.toUtf8()); qDebug() << "sent:" << msg;
+    clientSoc -> waitForReadyRead();
+    serverRespond = clientSoc -> readLine(); qDebug() << "received:" << serverRespond << "\n";
+    return serverRespond;
+}
+
 //!
 //! \brief Функция кнопки подключения
 //! \details Обрабатывает взаимодействие с сервером и проверяет успешное подключение к нему
 //!
-void MainWindow::connectButton_clicked()
+void MainWindow::on_connectButton_clicked()
 {
     QHostAddress host = QHostAddress("127.0.0.1");
-    QByteArray ans = "null";
+    QString ans = "null";
     clientSoc->connectToHost(host, 33333);
     if(clientSoc->isWritable() and clientSoc->isReadable()) ui->connectionStatus->setText("Подключение успешно!");
-    if(clientSoc->bytesAvailable()==0) qDebug() << "channel is empty, ready to write";
-    clientSoc-> write("catch"); qDebug() << "sent: catch";
-    clientSoc -> waitForReadyRead();
-    ans = clientSoc->readLine(); qDebug() << "received:" << ans << "\n";
+    ans = cts_SendToServ("catch");
     ui->connectButton->hide();
 }
 
@@ -43,7 +51,7 @@ void MainWindow::connectButton_clicked()
 //! \brief Функция кнопки-обработчика запросов
 //! \details Обрабатывает вводимые пользователем данные и пересылает их на сервер, далее обрабатывает ответ сервера и выводит результат на экран
 //!
-void MainWindow::execButton_clicked()
+void MainWindow::on_execButton_clicked()
 {
     if(clientSoc->isOpen() and clientSoc->isWritable())
     {
@@ -54,9 +62,7 @@ void MainWindow::execButton_clicked()
         if(ui->regButton->isChecked()) funcType = "reg";
             else funcType = "auth";
         query = funcType+"&"+login+"&"+pswd;
-        clientSoc -> write(query.toUtf8()); qDebug() << "sent:" << query;
-        clientSoc -> waitForReadyRead();
-        query = clientSoc -> readLine(); qDebug() << "received:" << query << "\n";
+        query = cts_SendToServ(query);
         if(query == "auth-success")
         {
             ui->connectionStatus->setText("Авторизация успешна!");
@@ -74,9 +80,9 @@ void MainWindow::execButton_clicked()
 //! \brief Функция кнопки-обработчика проверки ответов на задания
 //! \details Обрабатывает вводимые пользователям данные о задаче и пересылает их на сервер, далее обрабатывает ответ сервера и выводит результат на экран
 //!
-void MainWindow::sendTaskButton_clicked()
+void MainWindow::on_sendTaskButton_clicked()
 {
-    QString query = ui->taskLine->text() + "%" + ui->spinBox->text();
-    qDebug() << "sent:" << query << "\n";
+    QString query = ui->taskLine->text() + "#" + ui->answerLine->text();
+    query = cts_SendToServ(query);
+    ui->answerStatusLabel->setText(query);
 }
-

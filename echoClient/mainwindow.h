@@ -19,13 +19,13 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    QString cts_SendToServ(QString msg);
 
 private slots:
-    void connectButton_clicked();
 
-    void execButton_clicked();
-
-    void sendTaskButton_clicked();
+    void on_connectButton_clicked();
+    void on_execButton_clicked();
+    void on_sendTaskButton_clicked();
 
 private:
     Ui::MainWindow *ui;

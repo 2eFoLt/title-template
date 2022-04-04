@@ -17,10 +17,10 @@
    <widget class="QGroupBox" name="connectBox">
     <property name="geometry">
      <rect>
-      <x>90</x>
+      <x>80</x>
       <y>40</y>
-      <width>321</width>
-      <height>291</height>
+      <width>331</width>
+      <height>381</height>
      </rect>
     </property>
     <property name="title">
@@ -29,56 +29,86 @@
     <widget class="QLabel" name="connectionStatus">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>220</y>
-       <width>361</width>
-       <height>61</height>
+       <x>50</x>
+       <y>230</y>
+       <width>221</width>
+       <height>121</height>
       </rect>
      </property>
      <property name="text">
       <string>Нет подключения</string>
      </property>
     </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>70</x>
-       <y>20</y>
-       <width>160</width>
-       <height>199</height>
+       <x>50</x>
+       <y>30</y>
+       <width>227</width>
+       <height>205</height>
       </rect>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_5">
+     <layout class="QVBoxLayout" name="verticalLayout_9">
       <item>
-       <widget class="QRadioButton" name="regButton">
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
-        <property name="text">
-         <string>Регистрация</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="authButton">
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
-        <property name="text">
-         <string>Авторизация</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <layout class="QVBoxLayout" name="verticalLayout_4">
+       <layout class="QVBoxLayout" name="verticalLayout_5">
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout_3">
+         <widget class="QRadioButton" name="regButton">
+          <property name="mouseTracking">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Регистрация</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="authButton">
+          <property name="mouseTracking">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Авторизация</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_8">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
           <item>
-           <widget class="QLineEdit" name="loginLine"/>
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <item>
+             <widget class="QLabel" name="label_3">
+              <property name="text">
+               <string>Логин:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_4">
+              <property name="text">
+               <string>Пароль:</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
           <item>
-           <widget class="QLineEdit" name="pswdLine"/>
+           <layout class="QVBoxLayout" name="verticalLayout_4">
+            <item>
+             <widget class="QLineEdit" name="loginLine"/>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="pswdLine"/>
+            </item>
+           </layout>
           </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_7">
           <item>
            <widget class="QPushButton" name="execButton">
             <property name="text">
@@ -86,14 +116,14 @@
             </property>
            </widget>
           </item>
+          <item>
+           <widget class="QPushButton" name="connectButton">
+            <property name="text">
+             <string>Подключиться</string>
+            </property>
+           </widget>
+          </item>
          </layout>
-        </item>
-        <item>
-         <widget class="QPushButton" name="connectButton">
-          <property name="text">
-           <string>Подключиться</string>
-          </property>
-         </widget>
         </item>
        </layout>
       </item>
@@ -105,8 +135,8 @@
      <rect>
       <x>420</x>
       <y>60</y>
-      <width>281</width>
-      <height>181</height>
+      <width>311</width>
+      <height>191</height>
      </rect>
     </property>
     <property name="title">
@@ -115,58 +145,54 @@
     <widget class="QWidget" name="">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>242</width>
-       <height>134</height>
+       <x>12</x>
+       <y>14</y>
+       <width>289</width>
+       <height>130</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_6">
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout">
+         <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_2">
-            <item>
-             <widget class="QLabel" name="label_2">
-              <property name="text">
-               <string>Ваш ответ:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="taskLine"/>
-            </item>
-           </layout>
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Ваш ответ:</string>
+            </property>
+           </widget>
           </item>
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout">
-            <item>
-             <widget class="QLabel" name="label">
-              <property name="text">
-               <string>Номер варианта:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QSpinBox" name="spinBox"/>
-            </item>
-           </layout>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Номер варианта:</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
         <item>
-         <widget class="QPushButton" name="sendTaskButton">
-          <property name="text">
-           <string>Отправить на проверку</string>
-          </property>
-         </widget>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <widget class="QLineEdit" name="taskLine"/>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="answerLine"/>
+          </item>
+         </layout>
         </item>
        </layout>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <widget class="QPushButton" name="sendTaskButton">
+        <property name="text">
+         <string>Отправить на проверку</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
          <widget class="QLabel" name="labelAnswerStatus">
           <property name="text">

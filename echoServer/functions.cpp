@@ -44,7 +44,6 @@ QString custom_func(QString arg1, QString arg2, QString arg3)
 //!
 QString printdb(SQLdb* link)
 {
-    //qDebug() << "print() called";
     link -> print_db();
     return "db-print";
 }
@@ -55,6 +54,13 @@ QString printdb(SQLdb* link)
 //!
 QString parsing(QString input_str, SQLdb* link)
 {
+    if(input_str.contains('#')) //answer%variant
+    {
+        QList input_list = input_str.split('#');
+        QString ans = input_list.front();
+        QString variant = input_list.back();
+        return "task " + variant + " ans " + ans;
+    }
     if(input_str.contains('&'))
     {
         QList input_list = input_str.split('&');
