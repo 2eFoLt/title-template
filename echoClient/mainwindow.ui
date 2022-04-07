@@ -20,7 +20,7 @@
       <x>80</x>
       <y>40</y>
       <width>331</width>
-      <height>381</height>
+      <height>441</height>
      </rect>
     </property>
     <property name="title">
@@ -32,7 +32,7 @@
        <x>50</x>
        <y>230</y>
        <width>221</width>
-       <height>121</height>
+       <height>181</height>
       </rect>
      </property>
      <property name="text">
@@ -142,7 +142,7 @@
     <property name="title">
      <string/>
     </property>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>12</x>

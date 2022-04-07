@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    clientSoc = new QTcpSocket;
+    clientObj = new clientTCP;
     ui->answerBox->hide();
 }
 
@@ -22,28 +22,20 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-QString MainWindow::cts_SendToServ(QString msg)
-{
-    QString serverRespond;
-    if(!(clientSoc -> isWritable())) return "cannot-write";
-    if(!(clientSoc -> bytesAvailable()==0)) return "busy-stream";
-    clientSoc -> write(msg.toUtf8()); qDebug() << "sent:" << msg;
-    clientSoc -> waitForReadyRead();
-    serverRespond = clientSoc -> readLine(); qDebug() << "received:" << serverRespond << "\n";
-    return serverRespond;
-}
-
 //!
 //! \brief Функция кнопки подключения
 //! \details Обрабатывает взаимодействие с сервером и проверяет успешное подключение к нему
 //!
 void MainWindow::on_connectButton_clicked()
 {
-    QHostAddress host = QHostAddress("127.0.0.1");
     QString ans = "null";
-    clientSoc->connectToHost(host, 33333);
-    if(clientSoc->isWritable() and clientSoc->isReadable()) ui->connectionStatus->setText("Подключение успешно!");
-    ans = cts_SendToServ("catch");
+    //clientTCP::connectToServer();
+    if(clientObj->connectToServer())
+    {
+        //ans = clientTCP::sendToServer("catch");
+        ans = clientObj->sendToServer("catch");
+    }
+    if(ans == "respond-string") ui->connectionStatus->setText("Успешно подключено!");
     ui->connectButton->hide();
 }
 
@@ -53,7 +45,7 @@ void MainWindow::on_connectButton_clicked()
 //!
 void MainWindow::on_execButton_clicked()
 {
-    if(clientSoc->isOpen() and clientSoc->isWritable())
+    if(clientObj->getStatus())
     {
         QString query = "NaN";
         QString login = ui->loginLine->text();
@@ -62,7 +54,7 @@ void MainWindow::on_execButton_clicked()
         if(ui->regButton->isChecked()) funcType = "reg";
             else funcType = "auth";
         query = funcType+"&"+login+"&"+pswd;
-        query = cts_SendToServ(query);
+        query = clientObj->sendToServer(query);
         if(query == "auth-success")
         {
             ui->connectionStatus->setText("Авторизация успешна!");
@@ -83,6 +75,6 @@ void MainWindow::on_execButton_clicked()
 void MainWindow::on_sendTaskButton_clicked()
 {
     QString query = ui->taskLine->text() + "#" + ui->answerLine->text();
-    query = cts_SendToServ(query);
+    query = clientObj->sendToServer(query);
     ui->answerStatusLabel->setText(query);
 }
