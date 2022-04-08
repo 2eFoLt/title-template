@@ -13,10 +13,10 @@ class clientTCP
         static QHostAddress host;
         clientTCP();
         clientTCP(const clientTCP &);
-        ~clientTCP();
         clientTCP& operator = (clientTCP &);
 
     public:
+        ~clientTCP();
         static clientTCP* getInstance();
         static bool connectToServer();
         static QString sendToServer(QString msg);
