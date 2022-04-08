@@ -1,15 +1,19 @@
 #include "clienttcp.h"
+clientTCP* clientTCP::clientInstance = nullptr;
+QHostAddress clientTCP::host = QHostAddress("127.0.0.1");
+QTcpSocket* clientTCP::clientSocket = new QTcpSocket;
 
-clientTCP::clientTCP()
-{
-    clientSocket = new QTcpSocket;
-    host = QHostAddress("127.0.0.1");
-}
+clientTCP::clientTCP(){}
 
 clientTCP::~clientTCP()
 {
     clientSocket->close();
     delete clientSocket;
+}
+clientTCP* clientTCP::getInstance()
+{
+    if(!clientInstance) clientInstance = new clientTCP();
+    return clientInstance;
 }
 
 QString clientTCP::sendToServer(QString msg)
@@ -28,13 +32,13 @@ bool clientTCP::connectToServer()
     clientSocket->connectToHost(host, 33333);
     if(clientSocket->isWritable() and clientSocket->isReadable())
     {
-        connection_status = true;
+        return clientSocket->isWritable();
     }
-    return connection_status;
+    return false;
 }
 
 bool clientTCP::getStatus()
 {
-    if(clientSocket->isWritable() and clientSocket->isReadable() and connection_status) return true;
+    if(clientSocket->isWritable() and clientSocket->isReadable()) return true;
     else return false;
 }

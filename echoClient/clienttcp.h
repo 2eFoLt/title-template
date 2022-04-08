@@ -8,17 +8,19 @@
 class clientTCP
 {
     private:
-        bool connection_status = false;
-        QTcpSocket* clientSocket;
-        QHostAddress host;
+        static clientTCP* clientInstance;
+        static QTcpSocket *clientSocket;
+        static QHostAddress host;
+        clientTCP();
+        clientTCP(const clientTCP &);
+        ~clientTCP();
+        clientTCP& operator = (clientTCP &);
 
     public:
-        clientTCP();
-        ~clientTCP();
-        bool connectToServer();
-        //static bool connectToServer();
-        QString sendToServer(QString msg);
-        bool getStatus();
+        static clientTCP* getInstance();
+        static bool connectToServer();
+        static QString sendToServer(QString msg);
+        static bool getStatus();
 };
 
 #endif // CLIENTTCP_H

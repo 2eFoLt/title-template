@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    clientObj = new clientTCP;
+    clientTCP::getInstance();
     ui->answerBox->hide();
 }
 
@@ -29,11 +29,10 @@ MainWindow::~MainWindow()
 void MainWindow::on_connectButton_clicked()
 {
     QString ans = "null";
-    //clientTCP::connectToServer();
-    if(clientObj->connectToServer())
+    clientTCP::connectToServer();
+    if(clientTCP::getStatus())
     {
-        //ans = clientTCP::sendToServer("catch");
-        ans = clientObj->sendToServer("catch");
+        ans = clientTCP::sendToServer("catch");
     }
     if(ans == "respond-string") ui->connectionStatus->setText("Успешно подключено!");
     ui->connectButton->hide();
@@ -45,7 +44,7 @@ void MainWindow::on_connectButton_clicked()
 //!
 void MainWindow::on_execButton_clicked()
 {
-    if(clientObj->getStatus())
+    if(clientTCP::getStatus())
     {
         QString query = "NaN";
         QString login = ui->loginLine->text();
@@ -54,7 +53,7 @@ void MainWindow::on_execButton_clicked()
         if(ui->regButton->isChecked()) funcType = "reg";
             else funcType = "auth";
         query = funcType+"&"+login+"&"+pswd;
-        query = clientObj->sendToServer(query);
+        query = clientTCP::sendToServer(query);
         if(query == "auth-success")
         {
             ui->connectionStatus->setText("Авторизация успешна!");
@@ -75,6 +74,6 @@ void MainWindow::on_execButton_clicked()
 void MainWindow::on_sendTaskButton_clicked()
 {
     QString query = ui->taskLine->text() + "#" + ui->answerLine->text();
-    query = clientObj->sendToServer(query);
+    query = clientTCP::sendToServer(query);
     ui->answerStatusLabel->setText(query);
 }

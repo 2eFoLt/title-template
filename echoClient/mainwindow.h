@@ -27,6 +27,5 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    clientTCP* clientObj;
 };
 #endif // MAINWINDOW_H
