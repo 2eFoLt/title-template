@@ -30,6 +30,8 @@ MainWindow::~MainWindow()
 void MainWindow::on_connectButton_clicked()
 {
     QString ans = "null";
+    QByteArray qbAns = ans.toUtf8();
+    qDebug() << sizeof(ans) << sizeof(qbAns);
     clientTCP::connectToServer();
     if(clientTCP::getStatus())
     {

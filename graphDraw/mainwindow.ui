@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1300</width>
+    <height>1100</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,8 @@
    <widget class="QPushButton" name="buttonDrawLine">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>520</y>
+      <x>450</x>
+      <y>850</y>
       <width>75</width>
       <height>24</height>
      </rect>
@@ -30,10 +30,10 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>50</y>
-      <width>561</width>
-      <height>421</height>
+      <x>10</x>
+      <y>20</y>
+      <width>800</width>
+      <height>800</height>
      </rect>
     </property>
     <property name="text">
@@ -43,8 +43,8 @@
    <widget class="QPushButton" name="buttonClear">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>520</y>
+      <x>310</x>
+      <y>850</y>
       <width>75</width>
       <height>24</height>
      </rect>
@@ -53,61 +53,16 @@
      <string>Clear</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>500</y>
-      <width>242</width>
-      <height>56</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QLineEdit" name="lineX1">
-         <property name="placeholderText">
-          <string>x1</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="lineY1">
-         <property name="placeholderText">
-          <string>y1</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
-       <item>
-        <widget class="QLineEdit" name="lineX2">
-         <property name="placeholderText">
-          <string>x2</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="lineY2">
-         <property name="placeholderText">
-          <string>y2</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-    </layout>
-   </widget>
+   <zorder>buttonClear</zorder>
+   <zorder>label</zorder>
+   <zorder>buttonDrawLine</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>1300</width>
      <height>22</height>
     </rect>
    </property>

@@ -6,35 +6,33 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    objGraph = new QPixmap(500, 500);
-    objPainter = new QPainter;
-    objPainter->begin(objGraph);
-    objPainter->eraseRect(0, 0, 500, 500);
-    ui->label->setPixmap(*objGraph);
+    objGraph = new Graph;
+    ui->label->setPixmap(objGraph->getGraph());
 }
 
 MainWindow::~MainWindow()
 {
-    objPainter->end();
+    objGraph->~Graph();
     delete ui;
-}
-
-void MainWindow::drawGraph()
-{
-    objPainter->drawLine(ui->lineX1->text().toInt(), ui->lineY1->text().toInt(),
-                         ui->lineX2->text().toInt(), ui->lineY2->text().toInt());
-    ui->label->setPixmap(*objGraph);
 }
 
 void MainWindow::on_buttonDrawLine_clicked()
 {
-    drawGraph();
+    QList<QPair<int, int>> listOfVerts;
+    QPair<int, int> intPair;
+    for(int i = 1; i < 14; i+=2)
+    {
+        intPair.first = i; intPair.second = i+1;
+        listOfVerts.append(intPair);
+    }
+    objGraph->setupGraph(listOfVerts);
+    ui->label->setPixmap(objGraph->getGraph());
 }
 
 
 void MainWindow::on_buttonClear_clicked()
 {
-    objPainter->eraseRect(0, 0, 500, 500);
-    ui->label->setPixmap(*objGraph);
+    objGraph->clearGraph();
+    ui->label->setPixmap(objGraph->getGraph());
 }
 

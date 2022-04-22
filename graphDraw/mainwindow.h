@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QtGui>
+#include "graphfunctions.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -22,8 +23,7 @@ private slots:
     void on_buttonClear_clicked();
 
 private:
-    QPixmap *objGraph;
-    QPainter *objPainter;
+    Graph* objGraph;
     Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H
