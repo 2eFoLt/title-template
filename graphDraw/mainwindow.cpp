@@ -6,10 +6,11 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    objGraph = new QPixmap(500, 300);
+    objGraph = new QPixmap(500, 500);
     objPainter = new QPainter;
     objPainter->begin(objGraph);
-    objPainter->eraseRect(0, 0, 500, 300);
+    objPainter->eraseRect(0, 0, 500, 500);
+    ui->label->setPixmap(*objGraph);
 }
 
 MainWindow::~MainWindow()
@@ -20,7 +21,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::drawGraph()
 {
-    objPainter->drawLine(100, 100, 200, 200);
+    objPainter->drawLine(ui->lineX1->text().toInt(), ui->lineY1->text().toInt(),
+                         ui->lineX2->text().toInt(), ui->lineY2->text().toInt());
     ui->label->setPixmap(*objGraph);
 }
 
@@ -32,7 +34,7 @@ void MainWindow::on_buttonDrawLine_clicked()
 
 void MainWindow::on_buttonClear_clicked()
 {
-    objPainter->eraseRect(0, 0, 500, 300);
+    objPainter->eraseRect(0, 0, 500, 500);
     ui->label->setPixmap(*objGraph);
 }
 
