@@ -2,6 +2,7 @@
 #define GRAPHFUNCTIONS_H
 #include <QtGui>
 #include <random>
+#include <QDebug>
 
 class Graph
 {

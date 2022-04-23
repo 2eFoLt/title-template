@@ -34,15 +34,16 @@ void Graph::setupGraph(QList<QPair<int, int>> baseLines)
     objPainter->eraseRect(0, 0, 800, 800);
     QMap<int, QPoint> mapVerticalsToPoints;
     QPair<int, int> pairOfVerticals;
+    QLine currLine;
     QVector<QLine> listOfLines;
     foreach (pairOfVerticals, baseLines)
     {
         if(mapVerticalsToPoints[pairOfVerticals.first].isNull()) mapVerticalsToPoints[pairOfVerticals.first] = genCord();
         if(mapVerticalsToPoints[pairOfVerticals.second].isNull()) mapVerticalsToPoints[pairOfVerticals.second] = genCord();
+        currLine = QLine(mapVerticalsToPoints[pairOfVerticals.first], mapVerticalsToPoints[pairOfVerticals.second]);
+        listOfLines.append(QLine(currLine));
         objPainter->drawText(mapVerticalsToPoints[pairOfVerticals.first], QString::number(pairOfVerticals.first));
         objPainter->drawText(mapVerticalsToPoints[pairOfVerticals.second], QString::number(pairOfVerticals.second));
-        listOfLines.append(QLine(mapVerticalsToPoints[pairOfVerticals.first],
-                           mapVerticalsToPoints[pairOfVerticals.second]));
     }
     objPainter->drawLines(listOfLines);
 }
