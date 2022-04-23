@@ -20,8 +20,6 @@ public:
 private slots:
     void on_buttonDrawLine_clicked();
 
-    void on_buttonClear_clicked();
-
 private:
     Graph* objGraph;
     Ui::MainWindow *ui;

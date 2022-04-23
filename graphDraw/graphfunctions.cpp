@@ -2,10 +2,10 @@
 
 Graph::Graph()
 {
-    objGraph = QPixmap(1000, 1000);
+    objGraph = QPixmap(800, 800);
     objPainter = new QPainter;
     objPainter->begin(&objGraph);
-    objPainter->eraseRect(0, 0, 1000, 1000);
+    objPainter->eraseRect(0, 0, 800, 800);
 }
 
 Graph::~Graph()
@@ -19,59 +19,30 @@ QPixmap Graph::getGraph()
     return objGraph;
 }
 
-void Graph::setupGraph(QList<QPair<int, int>> base)
+QPoint Graph::genCord()
 {
-    QVector<QPair<QPoint, QPoint>> source;
+    QPoint pt;
     std::mt19937 gen(rd());
     std::uniform_real_distribution<> dist(10.0, 70.0);
-    QPair<QPoint, QPoint> pointPair;
-    QPair<int, int> intPair;
-    int k = 1;
-    QSet<QPoint> points;
-    QPoint tempPoint, firstPoint;
-    for (int i = 0; i < base.count(); i++)
-    {
-        if(!tempPoint.isNull())
-        {
-            pointPair.first = tempPoint;
-            pointPair.second.setX(int(round(dist(gen))*10));
-            pointPair.second.setY(int(round(dist(gen))*10));
-            tempPoint = pointPair.second;
-        }
-        else
-        {
-            pointPair.first.setX(int(round(dist(gen))*10));
-            pointPair.first.setY(int(round(dist(gen))*10));
-            pointPair.second.setX(int(round(dist(gen))*10));
-            pointPair.second.setY(int(round(dist(gen))*10));
-            tempPoint = pointPair.second;
-            if(firstPoint.isNull())
-            {
-                firstPoint = pointPair.first;
-            }
-        }
-        source.append(pointPair);
-        points.insert(pointPair.first);
-        points.insert(pointPair.second);
-    }
-    source.last().second = firstPoint;
-    foreach (pointPair, source)
-    {
-        objPainter->drawPoint(pointPair.first);
-        objPainter->drawText(pointPair.first, QString::number(k));
-        k++;
-        objPainter->drawPoint(pointPair.second);
-        objPainter->drawLine(pointPair.first, pointPair.second);
-    }
-    foreach (intPair, base)
-    {
-        table[intPair.first] = source.front().first;
-        table[intPair.second] = source.front().second;
-        source.pop_front();
-    }
+    pt.setX(int(round(dist(gen))*10));
+    pt.setY(int(round(dist(gen))*10));
+    return pt;
 }
 
-void Graph::clearGraph()
+void Graph::setupGraph(QList<QPair<int, int>> baseLines)
 {
-    objPainter->eraseRect(0, 0, 1000, 1000);
+    objPainter->eraseRect(0, 0, 800, 800);
+    QMap<int, QPoint> mapVerticalsToPoints;
+    QPair<int, int> pairOfVerticals;
+    QVector<QLine> listOfLines;
+    foreach (pairOfVerticals, baseLines)
+    {
+        if(mapVerticalsToPoints[pairOfVerticals.first].isNull()) mapVerticalsToPoints[pairOfVerticals.first] = genCord();
+        if(mapVerticalsToPoints[pairOfVerticals.second].isNull()) mapVerticalsToPoints[pairOfVerticals.second] = genCord();
+        objPainter->drawText(mapVerticalsToPoints[pairOfVerticals.first], QString::number(pairOfVerticals.first));
+        objPainter->drawText(mapVerticalsToPoints[pairOfVerticals.second], QString::number(pairOfVerticals.second));
+        listOfLines.append(QLine(mapVerticalsToPoints[pairOfVerticals.first],
+                           mapVerticalsToPoints[pairOfVerticals.second]));
+    }
+    objPainter->drawLines(listOfLines);
 }

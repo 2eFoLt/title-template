@@ -18,21 +18,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_buttonDrawLine_clicked()
 {
-    QList<QPair<int, int>> listOfVerts;
-    QPair<int, int> intPair;
-    for(int i = 1; i < 14; i+=2)
-    {
-        intPair.first = i; intPair.second = i+1;
-        listOfVerts.append(intPair);
-    }
+    QList<QPair<int, int>> listOfVerts { {1, 3}, {1, 2}, {2, 3}, {3, 4}, {4, 2} };
     objGraph->setupGraph(listOfVerts);
     ui->label->setPixmap(objGraph->getGraph());
 }
-
-
-void MainWindow::on_buttonClear_clicked()
-{
-    objGraph->clearGraph();
-    ui->label->setPixmap(objGraph->getGraph());
-}
-

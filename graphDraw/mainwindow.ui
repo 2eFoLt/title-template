@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Draw line</string>
+     <string>Gen graph</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">
@@ -40,20 +40,6 @@
      <string>TextLabel</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="buttonClear">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>850</y>
-      <width>75</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Clear</string>
-    </property>
-   </widget>
-   <zorder>buttonClear</zorder>
    <zorder>label</zorder>
    <zorder>buttonDrawLine</zorder>
   </widget>
@@ -63,7 +49,7 @@
      <x>0</x>
      <y>0</y>
      <width>1300</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
