@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>1300</width>
     <height>600</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>Title-template</string>
@@ -201,6 +207,32 @@
       </item>
      </layout>
     </widget>
+    <widget class="QPushButton" name="rerollGraph">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>150</y>
+       <width>221</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Сгенерировать новый граф</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>740</x>
+      <y>50</y>
+      <width>525</width>
+      <height>525</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
    </widget>
   </widget>
   <action name="action">

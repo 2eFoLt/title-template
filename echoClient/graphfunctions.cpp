@@ -2,10 +2,11 @@
 
 Graph::Graph()
 {
-    objGraph = QPixmap(800, 800);
+    objGraph = QPixmap(525, 525);
     objPainter = new QPainter;
     objPainter->begin(&objGraph);
-    objPainter->eraseRect(0, 0, 800, 800);
+    objPainter->eraseRect(0, 0, 525, 525);
+    listOfVerts = { {1, 3}, {1, 2}, {2, 3}, {3, 4}, {4, 2} };
 }
 
 Graph::~Graph()
@@ -19,11 +20,16 @@ QPixmap Graph::getGraph()
     return objGraph;
 }
 
+QList<QPair<int, int>> Graph::getListOfVerts()
+{
+    return listOfVerts;
+}
+
 QPoint Graph::genCord()
 {
     QPoint pt;
     std::mt19937 gen(rd());
-    std::uniform_real_distribution<> dist(10.0, 70.0);
+    std::uniform_real_distribution<> dist(10.0, 50.0);
     pt.setX(int(round(dist(gen))*10));
     pt.setY(int(round(dist(gen))*10));
     return pt;
@@ -31,7 +37,8 @@ QPoint Graph::genCord()
 
 void Graph::setupGraph(QList<QPair<int, int>> baseLines)
 {
-    objPainter->eraseRect(0, 0, 800, 800);
+    listOfVerts = baseLines;
+    objPainter->eraseRect(0, 0, 525, 525);
     QMap<int, QPoint> mapVerticalsToPoints;
     QPair<int, int> pairOfVerticals;
     QLine currLine;

@@ -11,6 +11,9 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     clientTCP::getInstance();
+    objGraph = new Graph;
+    ui->label_3->setPixmap(objGraph->getGraph());
+    ui->label_3->hide();
     ui->answerBox->hide();
 }
 
@@ -62,6 +65,7 @@ void MainWindow::on_execButton_clicked()
             ui->connectionStatus->setText("Авторизация успешна!");
             ui->connectBox->hide();
             ui->answerBox->show();
+            ui->label_3->show();
         }
         if(query == "register-success") ui->connectionStatus->setText("Регистрация успешна!");
         if(query == "wrong-password") ui->connectionStatus->setText("Неверный пароль.");
@@ -79,4 +83,13 @@ void MainWindow::on_sendTaskButton_clicked()
     QString query = ui->taskLine->text() + "#" + ui->answerLine->text();
     query = clientTCP::sendToServer(query);
     ui->answerStatusLabel->setText(query);
+    //objGraph->setupGraph({ {1, 3}, {3, 4}, {4, 1} });
+    //ui->label_3->setPixmap(objGraph->getGraph());
 }
+
+void MainWindow::on_rerollGraph_clicked()
+{
+    objGraph->setupGraph(objGraph->getListOfVerts());
+    ui->label_3->setPixmap(objGraph->getGraph());
+}
+

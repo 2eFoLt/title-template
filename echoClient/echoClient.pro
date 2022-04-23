@@ -11,11 +11,13 @@ CONFIG += c++11
 
 SOURCES += \
     clienttcp.cpp \
+    graphfunctions.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     clienttcp.h \
+    graphfunctions.h \
     mainwindow.h
 
 FORMS += \

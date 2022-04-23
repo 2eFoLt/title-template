@@ -11,11 +11,13 @@ private:
     std::random_device rd;
     QPainter *objPainter;
     QPoint genCord();
+    QList<QPair<int, int>> listOfVerts;
 public:
     Graph();
     ~Graph();
     void setupGraph(QList<QPair<int, int>> sourceList);
     QPixmap getGraph();
+    QList<QPair<int, int>> getListOfVerts();
 };
 
 

@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "clienttcp.h"
+#include "graphfunctions.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -25,7 +26,10 @@ private slots:
     void on_execButton_clicked();
     void on_sendTaskButton_clicked();
 
+    void on_rerollGraph_clicked();
+
 private:
+    Graph* objGraph;
     Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H
