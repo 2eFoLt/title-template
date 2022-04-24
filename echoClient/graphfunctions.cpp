@@ -29,10 +29,22 @@ QPoint Graph::genCord()
 {
     QPoint pt;
     std::mt19937 gen(rd());
-    std::uniform_real_distribution<> dist(10.0, 50.0);
+    std::uniform_real_distribution<> dist(5.0, 50.0);
     pt.setX(int(round(dist(gen))*10));
     pt.setY(int(round(dist(gen))*10));
     return pt;
+}
+
+QList<QPair<int, int>> Graph::unwrap(QString strLines)
+{
+    QList<QPair<int, int>> res;
+    QList listBase = strLines.split('_'); //4#4, 3#4
+    foreach (QString item, listBase)
+    {
+        QPair<int, int> pairOfVerts = {item.split('#').first().toInt(), item.split('#').last().toInt()};
+        res.append(pairOfVerts);
+    }
+    return res;
 }
 
 void Graph::setupGraph(QList<QPair<int, int>> baseLines)
@@ -49,6 +61,10 @@ void Graph::setupGraph(QList<QPair<int, int>> baseLines)
         if(mapVerticalsToPoints[pairOfVerticals.second].isNull()) mapVerticalsToPoints[pairOfVerticals.second] = genCord();
         currLine = QLine(mapVerticalsToPoints[pairOfVerticals.first], mapVerticalsToPoints[pairOfVerticals.second]);
         listOfLines.append(QLine(currLine));
+        QPen objPen = objPainter->pen(); objPen.setWidth(4); objPainter->setPen(objPen);
+        objPainter->drawPoint(mapVerticalsToPoints[pairOfVerticals.first]);
+        objPainter->drawPoint(mapVerticalsToPoints[pairOfVerticals.second]);
+        objPen.setWidth(1); objPainter->setPen(objPen);
         objPainter->drawText(mapVerticalsToPoints[pairOfVerticals.first], QString::number(pairOfVerticals.first));
         objPainter->drawText(mapVerticalsToPoints[pairOfVerticals.second], QString::number(pairOfVerticals.second));
     }

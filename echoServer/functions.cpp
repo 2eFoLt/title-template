@@ -52,14 +52,14 @@ QString printdb(SQLdb* link)
 //! \param input_str Переменная для хранения разбитой функции
 //! \return Возвращает статус вызова функции. Приведено к человекочитаемому формату.
 //!
-QString parsing(QString input_str, SQLdb* link)
+QString parsing(QString input_str, SQLdb* link, QMap<int, QString>* linkDBTasks)
 {
     if(input_str.contains('#')) //answer%variant
     {
         QList input_list = input_str.split('#');
-        QString ans = input_list.front();
+        //QString ans = input_list.front();
         QString variant = input_list.back();
-        return "task " + variant + " ans " + ans;
+        return linkDBTasks->value(variant.toInt());
     }
     if(input_str.contains('&'))
     {

@@ -82,9 +82,10 @@ void MainWindow::on_sendTaskButton_clicked()
 {
     QString query = ui->taskLine->text() + "#" + ui->answerLine->text();
     query = clientTCP::sendToServer(query);
-    ui->answerStatusLabel->setText(query);
-    //objGraph->setupGraph({ {1, 3}, {3, 4}, {4, 1} });
-    //ui->label_3->setPixmap(objGraph->getGraph());
+    if(query.contains('#')) ui->answerStatusLabel->setText("Ответ зачтён");
+            else ui->answerStatusLabel->setText("Данный вариант отсутствует в базе");
+    objGraph->setupGraph(objGraph->unwrap(query));
+    ui->label_3->setPixmap(objGraph->getGraph());
 }
 
 void MainWindow::on_rerollGraph_clicked()

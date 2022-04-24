@@ -15,6 +15,7 @@ private:
 public:
     Graph();
     ~Graph();
+    QList<QPair<int, int>> unwrap(QString strLines);
     void setupGraph(QList<QPair<int, int>> sourceList);
     QPixmap getGraph();
     QList<QPair<int, int>> getListOfVerts();
