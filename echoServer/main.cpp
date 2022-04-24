@@ -1,6 +1,6 @@
 #include <QCoreApplication>
 #include "mytcpserver.h"
-//! \brief Тело программы
+//! \brief Тело сервера
 //! \param argc Параметр запуска 1, int
 //! \param argv Параметр запуска 2, char[]
 //! \return Производит запуск программы.

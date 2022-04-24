@@ -30,6 +30,7 @@ private:
     SQLdb mydb;
     int server_status;
     QMap<QTcpSocket*, int> active_clients;
+    QMap<int, QString> mapOfGraphs;
 };
 #endif // MYTCPSERVER_H
 
