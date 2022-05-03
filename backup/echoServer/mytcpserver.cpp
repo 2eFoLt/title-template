@@ -27,6 +27,9 @@ MyTcpServer::MyTcpServer(QObject *parent) : QObject(parent){
         server_status = 1;
         qDebug() << "Server online";
     }
+    mapOfGraphs.insert(1, "1#2_1#3_1#5_1#6_2#3_2#4_2#6_3#4_3#5_4#5_4#6_5#6");
+    mapOfGraphs.insert(2, "1#4_1#5_1#6_1#7_2#4_2#7_3#4_3#5_3#6_3#7_4#7");
+    mapOfGraphs.insert(3, "1#6_1#8_2#6_2#7_3#4_3#5_3#6_3#8_4#5_4#6_4#8_7#8");
 }
 
 //! \brief Слот нового подключения
@@ -62,7 +65,7 @@ void MyTcpServer::slotServerRead(){
         res = clientSocket -> readLine();
     }
     qDebug() << "received on read:" << res;
-    QByteArray answer = parsing(res, link).toUtf8();
+    QByteArray answer = parsing(res, link, &mapOfGraphs).toUtf8();
     clientSocket -> write(answer);
     qDebug() << "sent on read:" << answer << "\n";
 }
