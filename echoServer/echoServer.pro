@@ -21,7 +21,8 @@ SOURCES += \
     functions.cpp \
     main.cpp \
     msqldatabase.cpp \
-    mytcpserver.cpp
+    mytcpserver.cpp \
+    task3.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -31,4 +32,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     functions.h \
     msqldatabase.h \
-    mytcpserver.h
+    mytcpserver.h \
+    task3.h

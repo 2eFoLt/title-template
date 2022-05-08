@@ -1,5 +1,60 @@
 #include "functions.h"
 #include "msqldatabase.h"
+#include "task3.h"
+void twist(QPair<int, int>& pairObject)
+{
+    int temp = pairObject.first;
+    pairObject.first = pairObject.second;
+    pairObject.second = temp;
+}
+void countEntrances(QVector<int> &target, QList<QPair<int, int>> source)
+{
+    QPair<int , int> tempPair;
+    foreach (tempPair, source)
+    {
+        target[tempPair.first-1] += 1;
+        target[tempPair.second-1] += 1;
+    }
+}
+QList<QPair<int, int>> unwrap(QString strLines){
+    QList<QPair<int, int>> res;
+    QList listBase = strLines.split('_'); //4#4, 3#4
+    foreach (QString item, listBase){
+        QPair<int, int> pairOfVerts = {item.split('#').first().toInt(), item.split('#').last().toInt()};
+        res.append(pairOfVerts);
+    }
+    return res;
+}
+QString solveTask3(int variant, bool globalAnswer, QMap<int, QString>* linkDBTasks)
+{
+    QList<QPair<int, int>> source = unwrap(linkDBTasks->value(variant));
+    QPair<int, int> pair;
+    int globalMax = 0, localMax = 0, temp = 0;
+    bool localAnswer;
+    foreach (pair, source)
+    {
+        localMax = pair.first > pair.second ? pair.first : pair.second;
+        globalMax = localMax > globalMax ? localMax : globalMax;
+    }
+    QVector<int> tableOfEntrances = QVector<int>().fill(0, globalMax);
+    countEntrances(tableOfEntrances, source);
+    foreach(int item, tableOfEntrances){ if(item % 2 != 0) temp++; }
+    localAnswer = temp > 0 ? false : true;
+    QString result = globalAnswer == localAnswer ? "ok" : "not ok";
+    if(localAnswer)
+    {
+        QString eilerCycle;
+        eilerCycle = getMax(findCycle(source));
+        qDebug() << eilerCycle << result;
+        return result;
+    }
+    else
+    {
+        qDebug() << "Not an Eiler : " << result;
+        return result;
+    }
+}
+
 //! \brief Функция аутентификации пользователя
 //! \details Функция обращается к базе данных, проверяет наличие введённой пары и проводит валидацию данных.
 //! \param login Логин пользователя {char, max 20 символов}
@@ -57,9 +112,14 @@ QString parsing(QString input_str, SQLdb* link, QMap<int, QString>* linkDBTasks)
     if(input_str.contains('#')) //answer%variant
     {
         QList input_list = input_str.split('#');
-        //QString ans = input_list.front();
-        QString variant = input_list.back();
-        return linkDBTasks->value(variant.toInt());
+        int ans = input_list.front().toInt();
+        int variant = input_list.back().toInt();
+        if(linkDBTasks->contains(variant))
+        {
+            QString res = "+"+solveTask3(variant, ans == 1 ? true : false, linkDBTasks);
+            return linkDBTasks->value(variant)+res;
+        }
+            else return "wrong-variant";
     }
     if(input_str.contains('&'))
     {

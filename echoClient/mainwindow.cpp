@@ -82,10 +82,18 @@ void MainWindow::on_sendTaskButton_clicked()
 {
     QString query = ui->taskLine->text() + "#" + ui->answerLine->text();
     query = clientTCP::sendToServer(query);
-    if(query.contains('#')) ui->answerStatusLabel->setText("Ответ зачтён");
-            else ui->answerStatusLabel->setText("Данный вариант отсутствует в базе");
-    objGraph->setupGraph(objGraph->unwrap(query));
-    ui->label_3->setPixmap(objGraph->getGraph());
+    if(query.contains('#'))
+    {
+        QList source = query.split("+");
+        QString result, strOfLines;
+        strOfLines = source.first();
+        result = source.last();
+        if(result == "ok") ui->answerStatusLabel->setText("Ответ зачтён");
+            else ui->answerStatusLabel->setText("Ответ незачтён");
+        objGraph->setupGraph(objGraph->unwrap(strOfLines));
+        ui->label_3->setPixmap(objGraph->getGraph());
+    }
+        else ui->answerStatusLabel->setText("Данный вариант отсутствует в базе");
 }
 
 void MainWindow::on_rerollGraph_clicked()
