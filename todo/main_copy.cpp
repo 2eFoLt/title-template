@@ -20,14 +20,16 @@ void print(vector<string> source)
 	for(string item : source) cout << item << " ";
 }
 vector<string> findCycle(vector<pair<int, int>>);
+bool ifEiler(vector<pair<int, int>>);
 
 int main()
 {
 	vector<pair<int, int>> table = { 
-		{1, 2}, {1, 6}, {2, 3}, {2, 5}, {2, 6}, 
-		{3, 4}, {3, 5}, {3, 6}, {4, 5}, {5, 6}
+		{1, 2}, {1, 6}, {1, 4}, {4, 7}, {1, 7}, {2, 3}, {2, 5}, {2, 6}, 
+		{3, 4}, {3, 5}, {3, 6}, {4, 5},  {5, 6}
 	};
-	print(findCycle(table));
+	if(ifEiler(table)) print(findCycle(table));
+		else cout << "not eiler";
 	return 0;
 }
 pair<int, int> twist(pair<int, int> source)
@@ -39,9 +41,38 @@ pair<int, int> twist(pair<int, int> source)
 	return source;
 }
 
+int getMax(vector<pair<int, int>> source)
+{
+	int max = 0;
+	for(pair<int, int> i : source)
+	{
+		if (max < (i.first > i.second ? i.first : i.second)) max = (i.first > i.second ? i.first : i.second);
+	}
+	return max;
+}
 
+void getEntrances(int* array, vector<pair<int, int>> source)
+{
+	for(pair<int, int> i : source)
+	{
+		array[i.first]++;
+		array[i.second]++;
+	}
+}
+
+bool ifEiler(vector<pair<int, int>> source)
+{
+	int array[getMax(source)]{0};
+	getEntrances(array, source);
+	for(int i : array)
+	{
+		if(i%2!=0) return false;
+	}
+	return true;
+}
 vector<string> findCycle(vector<pair<int, int>> source)
 {
+	int array[getMax(source)]{0}; getEntrances(array, source);
 	int point, fpoint;
 	vector<pair<int, int>> copy_source;
 	vector<pair<int, int>> vault;

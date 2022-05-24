@@ -2,6 +2,7 @@
 #define TASK3_H
 #include <QString>
 #include <QVector>
+#include <QDebug>
 
 QString print(QVector<QPair<int, int>> source1);
 bool sortStringSize(QString str1, QString str2);

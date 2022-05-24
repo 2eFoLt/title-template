@@ -17,9 +17,19 @@ QString getMax(QVector<QString> source)
     std::sort(source.begin(), source.end(), sortStringSize);
     return source[0];
 }
+void getVertDeg(QSet<int> *setOfVerts, QVector<QPair<int, int>> source)
+{
+    for(QPair<int, int> i : source)
+    {
+        setOfVerts->insert(i.first); setOfVerts->insert(i.second);
+    }
+}
 QVector<QString> findCycle(QVector<QPair<int, int>> source)
 {
     int point;
+    QSet<int> setOfVerts;
+    getVertDeg(&setOfVerts, source);
+    qDebug() << setOfVerts;
     QVector<QPair<int, int>> copy_source;
     QVector<QPair<int, int>> vault;
     QVector<QPair<int, int>> main_source = source;
@@ -34,10 +44,8 @@ QVector<QString> findCycle(QVector<QPair<int, int>> source)
         pairMain = main_source.front();
         point = pairMain.second;
         cycle = QString::number(pairMain.first) + QString::number(pairMain.second);
-        //main_source.erase(remove(main_source.begin(), main_source.end(), pairMain), main_source.end());
         main_source.removeOne(pairMain);
         copy_source = source;
-       // copy_source.erase(remove(copy_source.begin(), copy_source.end(), pairMain), copy_source.end());
         copy_source.removeOne(pairMain);
         while(true)
         {
@@ -48,7 +56,6 @@ QVector<QString> findCycle(QVector<QPair<int, int>> source)
                     {
                         cycle += QString::number(pairSub.second);
                         point = pairSub.second;
-                        //copy_source.erase(remove(copy_source.begin(), copy_source.end(), pairSub), copy_source.end());
                         copy_source.removeOne(pairSub);
                     }
                 else
@@ -57,21 +64,33 @@ QVector<QString> findCycle(QVector<QPair<int, int>> source)
                         {
                             cycle += QString::number(pairSub.first);
                             point = pairSub.first;
-                            //copy_source.erase(remove(copy_source.begin(), copy_source.end(), pairSub), copy_source.end());
                             copy_source.removeOne(pairSub);
                         }
                         else
                         {
                             vault.push_back(pairSub);
-                            //copy_source.erase(remove(copy_source.begin(), copy_source.end(), pairSub), copy_source.end());
                             copy_source.removeOne(pairSub);
                         }
                     }
                 if(cycle.front() == cycle.back())
                 {
-                    cycles.push_back(cycle);
-                    cycle = "";
-                    break;
+                    bool check = true;
+                    foreach(int i, setOfVerts)
+                    {
+                        if(!cycle.contains(QString::number(i))) check = false;
+                    }
+                    qDebug() << "\n";
+                    if(check)
+                    {
+                        cycles.push_back(cycle);
+                        cycle = "";
+                        break;
+                    }
+                    else
+                    {
+                        cycle = "";
+                        break;
+                    }
                 }
             }
             else
