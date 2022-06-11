@@ -30,6 +30,7 @@ MyTcpServer::MyTcpServer(QObject *parent) : QObject(parent){
     mapOfGraphs.insert(1, "1#2_1#3_1#5_1#6_2#3_2#4_2#6_3#4_3#5_4#5_4#6_5#6");
     mapOfGraphs.insert(2, "1#4_1#5_1#6_1#7_2#4_2#7_3#4_3#5_3#6_3#7_4#7");
     mapOfGraphs.insert(3, "1#6_1#8_2#6_2#7_3#4_3#5_3#6_3#8_4#5_4#6_4#8_7#8");
+    mapOfGraphs.insert(4, "1#6_1#8_2#6_2#7_3#4_3#5_3#6_3#8_4#5_4#6_4#8_7#3_7#8");
 }
 
 //! \brief Слот нового подключения

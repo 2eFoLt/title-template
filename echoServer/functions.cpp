@@ -41,16 +41,21 @@ QString solveTask3(int variant, bool globalAnswer, QMap<int, QString>* linkDBTas
     foreach(int item, tableOfEntrances){ if(item % 2 != 0) temp++; }
     localAnswer = temp > 0 ? false : true;
     QString result = globalAnswer == localAnswer ? "ok" : "not ok";
+    QString eilerCycle;
     if(localAnswer)
     {
-        QString eilerCycle;
+        qDebug() << "graph is Eiler, building a cycle...";
         eilerCycle = getMax(findCycle(source));
         qDebug() << eilerCycle << result;
         return result;
     }
     else
     {
-        qDebug() << "Not an Eiler : " << result;
+        qDebug() << "graph is not Eiler, building till Eiler...";
+        buildToEiler(tableOfEntrances, &source);
+        qDebug() << "graph is Eiler, building a cycle...";
+        eilerCycle = getMax(findCycle(source));
+        qDebug() << eilerCycle << result;
         return result;
     }
 }

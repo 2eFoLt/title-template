@@ -24,12 +24,32 @@ void getVertDeg(QSet<int> *setOfVerts, QVector<QPair<int, int>> source)
         setOfVerts->insert(i.first); setOfVerts->insert(i.second);
     }
 }
+void buildToEiler(QVector<int> verticalsPower, QVector<QPair<int, int>> *source)
+{
+    QList<int> targetVerticals;
+    QPair<int, int> tempPair;
+    foreach(int i, verticalsPower)
+    {
+        if (i % 2 != 0)
+        {
+            targetVerticals.push_back(i);
+        }
+        if (targetVerticals.size() == 2)
+        {
+            tempPair = {verticalsPower.indexOf(targetVerticals.front()) + 1, verticalsPower.indexOf(targetVerticals.back()) + 1};
+            qDebug() << "pushed: " << tempPair;
+            source->push_back(tempPair);
+            targetVerticals.clear();
+        }
+    }
+}
 QVector<QString> findCycle(QVector<QPair<int, int>> source)
 {
+    if(source.isEmpty()) return QVector<QString>();
     int point;
     QSet<int> setOfVerts;
     getVertDeg(&setOfVerts, source);
-    qDebug() << setOfVerts;
+    //qDebug() << setOfVerts;
     QVector<QPair<int, int>> copy_source;
     QVector<QPair<int, int>> vault;
     QVector<QPair<int, int>> main_source = source;
@@ -79,7 +99,6 @@ QVector<QString> findCycle(QVector<QPair<int, int>> source)
                     {
                         if(!cycle.contains(QString::number(i))) check = false;
                     }
-                    qDebug() << "\n";
                     if(check)
                     {
                         cycles.push_back(cycle);
