@@ -22,7 +22,8 @@ SOURCES += \
     main.cpp \
     msqldatabase.cpp \
     mytcpserver.cpp \
-    task3.cpp
+    task3.cpp \
+    task19.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -33,4 +34,5 @@ HEADERS += \
     functions.h \
     msqldatabase.h \
     mytcpserver.h \
-    task3.h
+    task3.h \
+    task19.h

@@ -1,6 +1,7 @@
 #include "functions.h"
 #include "msqldatabase.h"
 #include "task3.h"
+#include "task19.h"
 void twist(QPair<int, int>& pairObject)
 {
     int temp = pairObject.first;
@@ -112,8 +113,47 @@ QString printdb(SQLdb* link)
 //! \param input_str Переменная для хранения разбитой функции
 //! \return Возвращает статус вызова функции. Приведено к человекочитаемому формату.
 //!
+QString solveTask19(QString source, QString answer)
+{
+    QVector<int> v_source;
+    QVector<int> v_answer;
+    for(int i = 0; i < source.length(); i++)
+    {
+        v_source.append(QString(source[i]).toInt());
+    }
+    for(int i = 0; i < answer.length(); i++)
+    {
+        v_answer.append(QString(answer[i]).toInt());
+    }
+    QVector<int> result1 = pruferCodeVoid(v_source);
+    QVector<QPoint> result_2 = result2(result1);
+    QString res2 = "";
+    for(int i = 0; i < result_2.size(); i++)
+    {
+        res2 += QString::number(result_2[i].x());
+        res2 += QString::number(result_2[i].y());
+    }
+    if(v_answer == result1)
+    {
+        return "yes*" + res2;
+    }
+    else
+    {
+        return "no*" + res2;
+    }
+}
 QString parsing(QString input_str, SQLdb* link, QMap<int, QString>* linkDBTasks)
 {
+    if(input_str.contains("task19C"))
+    {
+        //task19C#123456789#5511265
+        QVector<int> test = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        QList input_list = input_str.split('#');
+        input_list.removeFirst();
+        QString variant = input_list.first();//123456789
+        QString answer = input_list.last();//5511265
+        return solveTask19(variant, answer);
+    }
     if(input_str.contains('#')) //answer%variant
     {
         QList input_list = input_str.split('#');

@@ -82,6 +82,13 @@ void MainWindow::on_sendTaskButton_clicked()
 {
     QString query = ui->taskLine->text() + "#" + ui->answerLine->text();
     query = clientTCP::sendToServer(query);
+    if(query.contains("%"))
+    {
+        QList source = query.split("%");
+        QString task, verts;
+        task = source.first();
+        verts = source.last();
+    }
     if(query.contains('#'))
     {
         QList source = query.split("+");
@@ -100,5 +107,26 @@ void MainWindow::on_rerollGraph_clicked()
 {
     objGraph->setupGraph(objGraph->getListOfVerts());
     ui->label_3->setPixmap(objGraph->getGraph());
+}
+
+
+void MainWindow::on_task19Send_clicked()
+{
+    QString query = "task19C#" + ui->task19Variant->text() + "#" + ui->task19answer->text();
+    query = clientTCP::sendToServer(query);
+    QList source = query.split("*");
+    QString result, prufer;
+    result = source.first();
+    prufer = source.last();
+    if(result.contains("yes"))
+    {
+        ui->task19Result->setText("Правильно");
+        ui->task19Prufer->setText(prufer);
+    }
+    else
+    {
+        ui->task19Result->setText("Неправильно");
+        ui->task19Prufer->setText(prufer);
+    }
 }
 

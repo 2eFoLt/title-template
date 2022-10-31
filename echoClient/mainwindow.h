@@ -28,6 +28,8 @@ private slots:
 
     void on_rerollGraph_clicked();
 
+    void on_task19Send_clicked();
+
 private:
     Graph* objGraph;
     Ui::MainWindow *ui;
